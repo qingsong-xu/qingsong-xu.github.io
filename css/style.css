@@ -348,7 +348,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/banner.jpg") center #000;
+  background: url("images/mesh_fencing-wallpaper-1600x900.jpg") center #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -1042,8 +1042,6 @@ a.article-title:hover {
 #page-nav a,
 #page-nav span {
   padding: 10px 20px;
-  line-height: 1;
-  height: 2ex;
 }
 #page-nav a {
   color: #999;
@@ -1158,9 +1156,6 @@ a.article-title:hover {
 }
 .article-entry .highlight .line {
   height: 22.400000000000002px;
-}
-.article-entry .highlight .line.marked {
-  background: #515151;
 }
 .article-entry .gist {
   margin: 0 -20px;
@@ -1370,5 +1365,30 @@ pre .javascript .function {
 }
 .tagcloud a {
   margin-right: 5px;
-  display: inline-block;
+}
+#logo-wrap {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+}
+#logo {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  display: block;
+  background-repeat: no-repeat;
+  -webkit-background-size: 50px;
+  -moz-background-size: 50px;
+  background-size: 50px;
+  background-image: url("images/logo.png");
+  background-image: url("images/logo.svg"), none;
+  -webkit-background-size: 50px;
+  -moz-background-size: 50px;
+  background-size: 50px;
 }
