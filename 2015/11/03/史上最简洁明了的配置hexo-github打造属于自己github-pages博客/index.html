@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>史上最简洁明了的配置hexo+github打造属于自己github pages博客 | 青松的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="既然是Hexo + github，那么首先得准备这两个平台。（此文章基于读者已懂github使用及熟悉基本git命令，所以就不赘述github的知识了。），直接上干货！ ##1、安装Hexo##  Hexo是目前比较流行的博客框架，中文主页网址是：https://hexo.io/zh-cn/,默认英文主页网址是：https://hexo.io/  首先是安装hexo客户端，但是安装时，是使用nod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="史上最简洁明了的配置hexo+github打造属于自己github pages博客">
+<meta property="og:url" content="http://qingsong-xu.github.io/2015/11/03/史上最简洁明了的配置hexo-github打造属于自己github-pages博客/index.html">
+<meta property="og:site_name" content="青松的blog">
+<meta property="og:description" content="既然是Hexo + github，那么首先得准备这两个平台。（此文章基于读者已懂github使用及熟悉基本git命令，所以就不赘述github的知识了。），直接上干货！ ##1、安装Hexo##  Hexo是目前比较流行的博客框架，中文主页网址是：https://hexo.io/zh-cn/,默认英文主页网址是：https://hexo.io/  首先是安装hexo客户端，但是安装时，是使用nod">
+<meta property="og:updated_time" content="2015-11-19T02:04:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="史上最简洁明了的配置hexo+github打造属于自己github pages博客">
+<meta name="twitter:description" content="既然是Hexo + github，那么首先得准备这两个平台。（此文章基于读者已懂github使用及熟悉基本git命令，所以就不赘述github的知识了。），直接上干货！ ##1、安装Hexo##  Hexo是目前比较流行的博客框架，中文主页网址是：https://hexo.io/zh-cn/,默认英文主页网址是：https://hexo.io/  首先是安装hexo客户端，但是安装时，是使用nod">
+  
+    <link rel="alternate" href="/atom.xml" title="青松的blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青松的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-史上最简洁明了的配置hexo-github打造属于自己github-pages博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/03/史上最简洁明了的配置hexo-github打造属于自己github-pages博客/" class="article-date">
+  <time datetime="2015-11-02T19:41:01.000Z" itemprop="datePublished">2015-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      史上最简洁明了的配置hexo+github打造属于自己github pages博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>既然是Hexo + github，那么首先得准备这两个平台。（此文章基于读者已懂github使用及熟悉基本git命令，所以就不赘述github的知识了。），直接上干货！</p>
+<p>##1、安装Hexo##</p>
+<ul>
+<li><p>Hexo是目前比较流行的博客框架，中文主页网址是：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a>,默认英文主页网址是：<a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a></p>
+</li>
+<li><p>首先是安装hexo客户端，但是安装时，是使用node.js工具命令进行安装，所以没有安装node.js命令的话，是行不通的。在官方文档上都有说明，所以我就不累赘了，直接看官方文档吧。</p>
+</li>
+</ul>
+<h3 id="下面我默认从安装node-js工具命令开始-—mac版："><a href="#下面我默认从安装node-js工具命令开始-—mac版：" class="headerlink" title="下面我默认从安装node.js工具命令开始 —mac版："></a>下面我默认从安装node.js工具命令开始 —mac版：</h3><ul>
+<li><p>第一步：进入此网站：<a href="https://hexo.io/docs/" target="_blank" rel="external">https://hexo.io/docs/</a> 查看运行步骤。</p>
+<ul>
+<li><p>1、运行命令： </p>
+<pre><code>$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh 
+</code></pre></li>
+<li><p>若命令运行后下载不了nvm，这是因为这个地址以及失效了，尝试用命令：</p>
+<pre><code>$ curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh
+</code></pre><p>其实这里只是加了个 -L 参数，表示自动跳转到最新地址，属于curl命令范畴。</p>
+</li>
+<li><p>2、运行命令：</p>
+<pre><code>    $ nvm install 0.12 
+
+通过‘nvm’来安装‘npm’，这里可能会出现‘nvm not be found’，即nvm命令不可用问题。
+</code></pre><ul>
+<li>解决办法：第一步：<br>Check your .bash_profile or .profile file. You most likely had a problem during the installation.<br>You should have the following at the end of one of those files.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>[[ -s $HOME/.nvm/nvm.sh ]] &amp;&amp; . $HOME/.nvm/nvm.sh  # This loads NVM
+
+
+- 意思就是要在mac 的 ~/.bash_profile 文件中配置一下nvm环境。其中，若配置未成功，请尝试：把‘. $HOME/.nvm/nvm.sh’ 改成：‘source ~/.nvm/nvm.sh’。
+</code></pre><ul>
+<li><p>这里说一下‘<a href="http://blog.csdn.net/chenchong08/article/details/7833242" target="_blank" rel="external">.bash_profile和.profile的区别</a>’，若想 ‘~/.bash_profile’修改后不用重启终端，请使用命令 </p>
+<pre><code>source ~/.bash_profile
+</code></pre><ul>
+<li>其实只需要在.bash_profile里添加就可以的。我两个文件都添加了，而且添加后就好了，若不行的话，nvm命令还是不能找到的话，就接着看，搞定了的话请跳过下面这一段：<br>若nvm还是不能被发现，则：You can also check to see if you have a .nvm folder.</li>
+</ul>
+</li>
+</ul>
+<pre><code>ls -a | grep .nvm
+</code></pre><p>If you’re missing that folder then the installation failed to run the git command. This could be due to being behind a proxy. Try running the following instead.</p>
+<pre><code>$ git clone http://github.com/creationix/nvm.git .nvm
+</code></pre><ul>
+<li><p>3、nvm安装好后，使用nvm命令安装node.js:，命令是：</p>
+<pre><code>$ nvm install 0.12
+</code></pre></li>
+<li><p>4、node.js安装好后，使用npm命令安装hexo client，命令是：</p>
+<pre><code>$ npm install hexo-cli -g
+</code></pre><p>这样hexo就安装好了，接下来的，就是设置hexo了，可参考<a href="https://hexo.io/docs/setup.html" target="_blank" rel="external">Hexo官方文档–设置</a></p>
+</li>
+</ul>
+<p>以上4个步骤，就完成了npm命令安装hexo client的工作。</p>
+<p>##2、hexo的项目搭建及部署##<br>1、建站：<br>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<pre><code>$ hexo init &lt;folder&gt;
+$ cd &lt;folder&gt;
+$ npm install
+</code></pre><p>你会发现敲完上面的命令后，你的当前目录下会生成一个你指定的文件夹，即上述的folder    。<br>而npm install命令是会再这个folder下创建:node_modules文件，并且在这个文件中下载很多关于hexo的插件。<br>其中关键的有hexo和hexo server,从文件夹就可以看出，前者是hexo的主要部分插件，后者时hexo本地服务器插件，稍后本地查看时会用到。<br>2、配置：<br>打开初始化的指定文件，会看到根目录下有一个_config.yml配置文件，我们称它为“<strong>站点配置文件</strong>”,因为根目录下的themes文件下的主题文件目录下，也有一个_config.yml文件，我们称它为“<strong>主题配置文件</strong>“。<br>配置这个站点文件，可参考<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">配置教程</a>,<br>这里我要提点比如重要的地方：</p>
+<pre><code>#URL的配置部分
+url: http://yoursite.com
+root: /
+</code></pre><p>我们是在github上创建blog，所以url设置为访问你的blog时的主页地址,即’你的用户名.github.io‘,别忘了加’<a href="http://&#39;，比如我的：" target="_blank" rel="external">http://&#39;，比如我的：</a></p>
+<pre><code>#If your website is in a subdirectory (such as http://example.org/blog) set url to http://example.org/blog and set root to /blog/.我们的操作没有涉及到子目录
+url: http://qingsong-xu.github.io
+root: /
+</code></pre><p><strong>如果上面你乱在后面家了child目录，可能会导致主题应用失败。我就碰到了这个问题！！</strong></p>
+<p>另外要注意发布的配置部分，在通常在_config.yml文件内容最末尾：</p>
+<pre><code>deploy:
+    type: git
+    repo: git@github.com:qingsong-xu/qingsong-xu.github.io.git #库地址
+</code></pre><p>type对应的值，我们设为git,代表将要发布到git服务器上，repo代表仓库地址，也就是我们在github上会创建一个’你的用户名.github.io’仓库，这里的值就是这个仓库地址，可以是https格式，也可以是ssh格式，使用ssh格式地址的话，就不会提示用户名密码验证，所以我用的是ssh格式的库地址。<br>    这里我使用的是默认主题，所以没有更改。theme: landscape</p>
+<p>3、生成并且部署提交到git：<br>涉及的命令：<br>（1）生成： </p>
+<pre><code>$ hexo generate #生成命令，将搭建的文件生成git服务器能展示的静态文件：js、css等。
+</code></pre><p>（2）部署：执行下列命令之前，我们需要先安装部署到git服务器的插件，它也是在初始化文件的node_modules文件中，未安装时，你在这个文件中，只能看到hexo服务器及生成插件等文件目录。所以下面先执行命令安装 hexo-deployer-git：</p>
+<pre><code>$ npm install hexo-deployer-git --save
+</code></pre><p>这时node_modules目录下会生成文件hexo-deployer-git,这些命令都是在你’初始化的文件根目录下‘执行。</p>
+<p>至此，你已经完成了从建站到发布的整个流程。现在我们来看效果吧！<br>先进行本地测试看看效果：再强调一遍，是在初始化根目录下执行命令。<br>（1）、启动本地服务器：$hexo s –debug (意思是启动服务，并打开debug模式)<br> (2)访问：0.0.0.0：4000 进行访问看效果，4000是默认端口，可以修改，修改方式请看<a href="https://hexo.io/docs/server.html" target="_blank" rel="external">官方文档</a><br> 成功了吗？！哈哈</p>
+<p>##关于github仓库的建立##</p>
+<ul>
+<li><p>1、在github新建仓库</p>
+<ul>
+<li><p>关键：仓库名— ’你的用户名.github.io‘<br>这里提一下，，我们新建好这个仓库后，不用在这个仓库中添加任何代码，当我们运行hexo生成及部署命令时，会发现，hexo 发布时，会把根目录下的public文件复制并提交到了你建的仓库master分支上。所以hexo搭建github博客时，只用在github上建一个空仓库即可。</p>
+</li>
+<li><p>另外：在github上，你可以为你的任何仓库添加一个网站，你只需要：<br>把网站的页面push到这个仓库的gh_pages分支；（github有向导可以指引你自动创建这个分支）<br>通过<a href="http://username.github.io/reponame" target="_blank" rel="external">http://username.github.io/reponame</a> 进行访问（即<a href="http://博客地址/仓库名称/）。我的github博客地址是：http://qingsong-xu.github.io/，而openProject是我一个开源项目的仓库名称，它的页面可以通过http://qingsong-xu.github.io/openProject" target="_blank" rel="external">http://博客地址/仓库名称/）。我的github博客地址是：http://qingsong-xu.github.io/，而openProject是我一个开源项目的仓库名称，它的页面可以通过http://qingsong-xu.github.io/openProject</a> 访问到</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>##拓展—-切换主题##</p>
+<ul>
+<li><p>找到了想用的主题：在你初始化的目录下执行git clone命令，将clone下来的主题放到themes文件夹下，并修改“站点配置文件_config”的theme的值为这个主题的文件夹名。然后再生成部署到git，主题就切换成功了！有木有很简单啊！<br>如我执行的过程：</p>
+<ul>
+<li><p>（1）clone主题</p>
+<pre><code>$ git clone git@github.com:tommy351/hexo-theme-landscape.git themes/tommy
+</code></pre></li>
+<li><p>（2）修改配置：</p>
+<pre><code>#theme: landscape  //注释掉默认主题
+
+theme: tommy #这个名字要对应themes目录下要被应用的主题文件夹名
+</code></pre></li>
+<li><p>（3）执行生成及部署命令：</p>
+<pre><code>$ hexo g --deploy
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2015/11/03/史上最简洁明了的配置hexo-github打造属于自己github-pages博客/" data-id="cj83s9qot000kz6a8r6lk9t2s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/10/githug游戏练习git命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          githug游戏练习git命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/31/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/28/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/23/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

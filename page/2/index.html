@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>青松的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="qingsong android development">
+<meta property="og:type" content="website">
+<meta property="og:title" content="青松的blog">
+<meta property="og:url" content="http://qingsong-xu.github.io/page/2/index.html">
+<meta property="og:site_name" content="青松的blog">
+<meta property="og:description" content="qingsong android development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="青松的blog">
+<meta name="twitter:description" content="qingsong android development">
+  
+    <link rel="alternate" href="/atom.xml" title="青松的blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青松的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Activity的生命周期和启动模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/20/Activity的生命周期和启动模式/" class="article-date">
+  <time datetime="2016-10-19T21:25:12.000Z" itemprop="datePublished">2016-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/20/Activity的生命周期和启动模式/">Activity的生命周期和启动模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学习Android时间也不短了，所谓温故而知新，每每公司让面试别人时，却觉得Android能问的点就那么几个，有种“黔驴技穷”的感觉，不管了，补补基础知识吧。</p>
+<p>android最重要和常用的，也就四大组件了，所以四大组件的认识，是面试必问问题。而谈起与用户交互的Activity这一组件，生命周期自然是不得不说的。下面看你都知道这些知识点了吗？<br>生命周期主要有：1、正常情况下的生命周期  2、异常情况下的生命周期。（异常情况下举例有：a、资源相关的系统配置发生改变  b、资源内存不足产生改变）</p>
+<p>先说说正常情况下的生周期：这里采用一张图来概括。</p>
+<p>2、异常情况下的生命周期<br>a、资源相关的系统配置发生改变：<br>理解这个问题，首先要对系统的资源加载机制有一定了解，简单来说，如我们常用到的图片适配，为了兼容不同的设备，我们需要在一些目录下放置不同的图片，比如：drawable-mdpi,drawable-hdpi,drawable-land等，当应用启动时，系统会根据当前设备的情况去加载合适的Resource资源，比如横竖屏时手机就会拿到两张不同的图片（前提是设置了landscape和portrait状态下的图片）；当Activity处于竖屏状态时，如果旋转屏幕，由于系统配置发生了改变，默认情况下，此Activity就会被销毁并重建。</p>
+<p>b、资源内存不足发生改变：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/10/20/Activity的生命周期和启动模式/" data-id="cj83s9qnq0002z6a87stopf0n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ssh-exchange-identification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/04/ssh-exchange-identification/" class="article-date">
+  <time datetime="2016-09-03T17:10:32.000Z" itemprop="datePublished">2016-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/04/ssh-exchange-identification/">ssh_exchange_identification</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>➜  Githubs git clone git@github.com:qingsong-xu/zxing.git
+Cloning into &apos;zxing&apos;...
+ssh_exchange_identification: read: Connection reset by peer
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</code></pre><p><a href="http://yanue.net/post-163.html" target="_blank" rel="external">http://yanue.net/post-163.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/09/04/ssh-exchange-identification/" data-id="cj83s9qob000dz6a8cdd925e8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-预装-push-lib64中so文件查找错误" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/27/预装-push-lib64中so文件查找错误/" class="article-date">
+  <time datetime="2016-08-26T16:39:08.000Z" itemprop="datePublished">2016-08-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/27/预装-push-lib64中so文件查找错误/">预装(push)lib64中so文件查找错误</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="">http://blog.csdn.net/caroline_wendy/article/details/43615361</a></p>
+<p>Process: com.iboxpay.cashbox.sdk.plug, PID: 6578<br>                                                                            java.lang.UnsatisfiedLinkError: dlopen failed: “/system/lib64/libemvandroid.so” is 32-bit instead of 64-bit<br>                                                                                at java.lang.Runtime.loadLibrary(Runtime.java:371)<br>                                                                                at java.lang.System.loadLibrary(System.java:988)<br>                                                                                at com.nexgo.libpboc.EmvL2.<clinit>(EmvL2.java:22)</clinit></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/08/27/预装-push-lib64中so文件查找错误/" data-id="cj83s9qp2000rz6a8di3ghyj7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-教你上传自己的Library到JCenter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/09/教你上传自己的Library到JCenter/" class="article-date">
+  <time datetime="2016-08-09T09:30:16.000Z" itemprop="datePublished">2016-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/09/教你上传自己的Library到JCenter/">教你上传自己的Library到JCenter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>“It is currently in use by another Gradle instance” and becomes BUILD FAILED。</p>
+<p> <a href="http://stackoverflow.com/questions/21523508/it-is-currently-in-use-by-another-gradle-instance" target="_blank" rel="external">http://stackoverflow.com/questions/21523508/it-is-currently-in-use-by-another-gradle-instance</a></p>
+<p>Remove the lock files in the gradle cache by executing something like this:</p>
+<pre><code>find ~/.gradle -type f -name &quot;*.lock&quot; | while read f; do rm $f; done
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/08/09/教你上传自己的Library到JCenter/" data-id="cj83s9qov000mz6a8hn0xew4x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mac设置-brew-and-brew-cask" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/02/mac设置-brew-and-brew-cask/" class="article-date">
+  <time datetime="2016-08-02T12:58:28.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/mac设置-brew-and-brew-cask/">mac设置--brew and brew cask</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#安装环境<br>本人mac，在使用过程中，发现安装和管理开发工具不是很方便，于是便发现了brew这一利器！！<br>brew是ruby的包管理，所以需要装ruby，默认情况mac都装了。所以可以直接安装brew.</p>
+<p>#brew 和 brew cask<br>brew主要用来下载一些不带界面的命令行下的工具和第三方库来进行二次开发<br>brew cask主要用来下载一些带界面的应用软件，下载好后会自动安装，并能在mac中直接运行使用<br>例如，<br>brew install curl可以安装curl第三方库，这样你在开发时就可以使用它的库来进行开发<br>brew cask install chrome可以安装谷歌浏览器应用程序，可直接运行</p>
+<p>brew 偏管理第三方库和命令行工具方面<br>brew cask可以看作是苹果官方app store的补充，是一个众多贡献者们维护的非苹果官方软件商店，你也可以在这里下mac软件用</p>
+<p>一些免费好用的mac软件没有在苹果官方app store商店上架，我们就可以在brew cask中下载。如果我要下载10个免费小软件，而这些软件没有在苹果商店上架，我们不需要一个一个去谷歌它们的官方网站，再去这些软件的官网去下载，我们统一在brew cask中下载。使用brew cask来进行包管理还有一个好处，这10个免费软件如果自身不带升级功能，但现在它们有更新，我只能去官网重新下载？不，直接在brew cask里就可以统一升级。这也是你问的那句“为何网路上跟推荐用brew cask呢？”的原因。<br>如果安装mac图形界面软件，推荐先在苹果官方商店里搜索下载，没有的话去brew cask试试，如果还没有，只能去这个软件的官方网站去下载了。</p>
+<p>cask 官方的两个安装索引源，一个针对稳定版本，一个针对 Dev：</p>
+<p>稳定版：<a href="https://github.com/caskroom/homebrew-cask" target="_blank" rel="external">https://github.com/caskroom/homebrew-cask</a></p>
+<p>Dev版：<a href="https://github.com/caskroom/homebrew-versions" target="_blank" rel="external">https://github.com/caskroom/homebrew-versions</a></p>
+<p>#brew安装<br>brew的安装很顺利，可以在<a href="http://brew.sh/" target="_blank" rel="external">官网</a>找到安装步骤教程：</p>
+<pre><code>$ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre><p>装完就能使用了</p>
+<p>#brew操作<br>brew常用命令</p>
+<ul>
+<li>brew install name         # 安装源码</li>
+<li>brew info svn                # 显示软件的各种信息，包括版本啊源码地址啊等等</li>
+<li>brew uninstall name     # 卸载软件，很爽，一键静默卸载</li>
+<li>brew search name       # 搜索brew 支持的软件，支持模糊搜索</li>
+<li>brew list                       # 列出本机通过brew安装的所有软件</li>
+<li>brew update                # 跟新brew软件自身</li>
+<li>brew upgrade name    # 更新安装过的软件,如果不加软件名，就更新所有可以更新的软件</li>
+<li>brew cleanup              # 清除下载的各种缓存</li>
+</ul>
+<p>详见man brew</p>
+<p>#brew cask安装<br>    ~ brew install caskroom/cask/brew-cask    </p>
+<p>安装完后即可使用。默认将app安装到/opt/homebrew-cask/Caskroom下并连接到~/Applications目录</p>
+<p>#brew cask操作<br>操作和brew差不多，就是brew替换成brew cask而已。<br>brew cask的常用命令</p>
+<ul>
+<li>brew cask search               # 列出所有可以被安装的软件</li>
+<li>brew cask search name     # 查找所有和 name相关的应用</li>
+<li>brew cask install name       # 下载安装软件</li>
+<li>brew cask uninstall name   # 卸载软件</li>
+<li>brew cask info app             # 列出应用的信息</li>
+<li>brew cask list                      # 列出本机按照过的软件列表</li>
+<li>brew cask cleanup              # 清除下载的缓存以及各种链接信息<br>PS:详见man brew cask</li>
+</ul>
+<p>#brew及brew cask的更新<br>更新brew cask及通过brew-cask安装的程序</p>
+<ul>
+<li>brew update &amp;&amp; brew upgrade brew-cask                  #更新cask自身</li>
+<li>brew cask uninstall name &amp;&amp; brew cask install name ＃更新程序<br>（目前homebrew-cask 并没有命令直接更新已安装的软件，软件更新主要是通过软件自身的完成更新）</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/08/02/mac设置-brew-and-brew-cask/" data-id="cj83s9qoc000ez6a8mfuai4r3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-设计模式：策略设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/24/设计模式：策略设计模式/" class="article-date">
+  <time datetime="2016-07-24T14:30:40.000Z" itemprop="datePublished">2016-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/24/设计模式：策略设计模式/">设计模式：策略设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#策略设计模式：<br>定义算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的编号独立于使用算法的客户。</p>
+<p>原则：<br>1、多用组合，少用继承；<br>2、封装变化；<br>3、针对接口编程，不针对实现编程；</p>
+<p>基础：<br>java的3大特点：继承、封装、多态。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/07/24/设计模式：策略设计模式/" data-id="cj83s9qox000oz6a8av8yxeo2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="mac下sublime-Insight" class="article article-type-mac下sublime" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/30/Insight/" class="article-date">
+  <time datetime="2016-06-30T10:05:25.000Z" itemprop="datePublished">2016-06-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/30/Insight/">Insight</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>环境换到了Mac，可是没有了Source Insight，查找了一下，解决思路如下：</p>
+<p>1、安装Sublime Text2，下面两步都是安装插件，很酷（我是新手）</p>
+<p>2、安装Package Controler</p>
+<p>3、安装CTags</p>
+<p>4、导入Android源码，使用CTgas建立索引，然后就很酷了，CMD+P查找.java文件  CMD+R查找方法</p>
+<p>噢了。</p>
+<p>安装Package Controler:<br>打开Sublime Text的Console,输入命令：</p>
+<pre><code>import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())
+</code></pre><p>回车完成命令输入。就会看到相应的下载运行。Package Controler命令安装，可参考官网：<a href="https://packagecontrol.io/installation#st2" target="_blank" rel="external">https://packagecontrol.io/installation#st2</a></p>
+<p>点击Preferences。如果安装成功了，Package Settings 、Package Control会出现在菜单里了。</p>
+<p>Mac OSX中配置CTags插件：<strong>安装配置ctags前请确保已安装Package Control插件管理器</strong><br>1、打开Sublime Text软件，在Preferences(设置)菜单中打开Package Control(插件管理器)<br>如图：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/06/30/Insight/" data-id="cj83s9qnu0004z6a886edr6p3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-关于hexo发表文章中插入图片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/20/关于hexo发表文章中插入图片/" class="article-date">
+  <time datetime="2016-03-20T00:13:24.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/关于hexo发表文章中插入图片/">关于hexo发表文章中插入图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="发表嵌有图片的文章，图片path应该怎么写"><a href="#发表嵌有图片的文章，图片path应该怎么写" class="headerlink" title="发表嵌有图片的文章，图片path应该怎么写"></a>发表嵌有图片的文章，图片path应该怎么写</h2><p>###Hexo的文章资源文件夹<br>对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性：</p>
+<pre><code>post_asset_folder: true
+</code></pre><p>当资源文件管理功能打开后，Hexo将会在你每一次通过 “hexo new [layout] \<title>”命令创建新文章时自动创建一个文件夹。这个资源文件夹将会有与这个 markdown 文件一样的名字。将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。</title></p>
+<p><strong>为什么要这样做呢？</strong><br>因为采用Markdown的语法来发表嵌入图片的文章，会发现md文件里展示没问题，但是生成的网页是不成功的。<br>查了资料发现，要使用<a href="https://hexo.io/zh-cn/docs/tag-plugins.html" target="_blank" rel="external">标签插件</a>来实现“嵌入图片”。<br>图片标签为：</p>
+<figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;/path/to/image&quot; class=&quot;[class names]&quot; title=&quot;[width] [height] [title text [alt text]]&quot;&gt;</div></pre></td></tr></table></figure>
+<p><strong>个人例子：</strong><br>设置好属性后，会发现_post文件下会自动创建同名的文件夹，图片资源文件就放在这里。之后使用</p>
+<pre><code>hexo generate -deploy
+</code></pre><p>就可以发表了。<br>发表后会在“hexo”文件下与“source”文件夹同级的发表文件“public”文件夹下有对应发表文章。如我的：</p>
+<pre><code>{% img /2016/03/20/关于hexo发表文章中插入图片/hexo_generate.jpg hexo_generate %}
+</code></pre><p>生成的index.html位置是：2016/03/19/iterm2半透明窗口/index.html，而图片资源文件发布时是在index.html的同级目录下，所以标签应该写成：</p>
+<figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;/2016/03/19/iterm2半透明窗口/hotkey.jpg&quot; title=&quot;hotkey&quot;&gt;</div></pre></td></tr></table></figure>
+<p>这样就ok了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/03/20/关于hexo发表文章中插入图片/" data-id="cj83s9qoj000iz6a82oov23my" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iterm2半透明窗口" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/20/iterm2半透明窗口/" class="article-date">
+  <time datetime="2016-03-19T22:35:49.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/iterm2半透明窗口/">iterm2半透明窗口</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##iterm2设置半透明效果，研究了许久，没想到此功能竟然是热键唤起时的效果</p>
+<p>如下图，设置好系统热线之后，将在正常的浏览器或者编辑器等窗口的上面，以半透明窗口形式直接调出iterm2 shell。<br><img src="/2016/03/19/iterm2半透明窗口/hotkey.jpg" title="hotkey"><br>按下同样的系统热键之后，将自动隐藏。这样非常有利于随时随地处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/03/20/iterm2半透明窗口/" data-id="cj83s9qo8000bz6a8yw37jk65" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-zsh-强大shell的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/20/zsh-强大shell的使用/" class="article-date">
+  <time datetime="2016-03-19T19:42:52.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具使用/">工具使用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/zsh-强大shell的使用/">zsh-强大shell的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>闲来无事，就想折腾折腾我的mac，哈哈</p>
+<p>###（1）iTerm2 是 OS X 下一款开源免费的的终端工具，我基本用它替代了原生的 Terminal。网址：<a href="http://www.iterm2.com" target="_blank" rel="external">http://www.iterm2.com</a></p>
+<p>###（2）有了优秀的终端，我们终于可以使用 Shell 了。不过，万里长征才开始了第一步，Shell 也是分门派的，我推荐给大家的是：<a href="http://macshuo.com/?p=676" target="_blank" rel="external">终极 Shell——ZSH</a>。</p>
+<blockquote>
+<p>安装好iTerm2后，使用时会发现没有“命令自定义别名”功能，在网上搜了下，配合使用zsh这个shell，就可以实现。<br>所以，我安装了zsh.<br>在默认终端里执行：</p>
+</blockquote>
+<pre><code>cat /etc/shells
+</code></pre><p>即可以发现目前你mac环境里的shell命令种类。没安装zsh的话,请看shell-zsh连接进行安装。<br>我的默认已经安装了：</p>
+<pre><code>cat /etc/shells
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</code></pre><p>很明显最后一个就是我说zsh终极shell。<br>查看所以文件时会发现有一个.zshrc文件，使用vim命令查看这个文件内容，在最后配置命令别名：</p>
+<pre><code>alias ll=&quot;ls -l&quot;
+alias la=&quot;ls -a&quot;
+</code></pre><p>退出保存此文件，然后使用“ll”你会发现命令没有用。<br><strong>原因在于你设置的默认shell并不是zsh这个shell,所以只要更改默认shell就可以了，如下：</strong></p>
+<pre><code>chsh -s /bin/zsh
+</code></pre><p>相关资料可看<a href="http://blog.longwin.com.tw/2011/10/macosx-shell-zsh-2011/" target="_blank" rel="external">MacOSX shell 改用 zsh</a><br>关于主题的更改，可以看<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">Themes · robbyrussell/oh-my-zsh Wiki · GitHub</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/03/20/zsh-强大shell的使用/" data-id="cj83s9qoh000hz6a82v08257p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/28/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/23/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

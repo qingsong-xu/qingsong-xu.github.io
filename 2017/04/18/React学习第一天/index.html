@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>React学习第一天 | 青松的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###理解ReactDOM.renderReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点1、此方法接受两个参数，中间用逗号隔开，第一个参数要么是html块，要么是组件。直接写{} js代码是错误的。2、有且只能有一个顶层标签，有两个平级的顶层标签会出错 ###组件 React.createClass var Component">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React学习第一天">
+<meta property="og:url" content="http://qingsong-xu.github.io/2017/04/18/React学习第一天/index.html">
+<meta property="og:site_name" content="青松的blog">
+<meta property="og:description" content="###理解ReactDOM.renderReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点1、此方法接受两个参数，中间用逗号隔开，第一个参数要么是html块，要么是组件。直接写{} js代码是错误的。2、有且只能有一个顶层标签，有两个平级的顶层标签会出错 ###组件 React.createClass var Component">
+<meta property="og:updated_time" content="2017-04-19T06:32:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React学习第一天">
+<meta name="twitter:description" content="###理解ReactDOM.renderReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点1、此方法接受两个参数，中间用逗号隔开，第一个参数要么是html块，要么是组件。直接写{} js代码是错误的。2、有且只能有一个顶层标签，有两个平级的顶层标签会出错 ###组件 React.createClass var Component">
+  
+    <link rel="alternate" href="/atom.xml" title="青松的blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青松的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-React学习第一天" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/18/React学习第一天/" class="article-date">
+  <time datetime="2017-04-18T08:04:48.000Z" itemprop="datePublished">2017-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React学习第一天
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###理解ReactDOM.render<br>ReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点<br>1、此方法接受两个参数，中间用逗号隔开，第一个参数要么是<div>html块，要么是组件。直接写{} js代码是错误的。<br>2、有且只能有一个顶层标签，有两个平级的顶层标签会出错</div></p>
+<p>###组件 React.createClass</p>
+<pre><code>var ComponentModel =  React.createClass（{
+    render:function(){ return ****; }
+    }）;
+</code></pre><p>1、组件只能包含一个顶层标签，不能包含两个顶层标签，否则报错<br>2、组件属性名，避免和JavaScript的保留字冲突，class改成className，for改成hemlFor。(自己试验了下，不改也是ok的，奇怪了)<br>3、 React.createClass(),括号里，必须用‘{’大括号把render:function(){return <em>*</em>;}包裹起来</p>
+<p>###this.props.children<br>this.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点<br>这里比较有意思的是：</p>
+<pre><code>var NotesList = React.createClass({
+render: function(){
+    return (
+    &lt;div&gt;
+    {
+        React.Children.map(this.props.children,function(child){
+        return &lt;span&gt;{child}&lt;/span&gt;;
+        })
+    }
+    &lt;/div&gt;
+    );
+}
+});
+
+ReactDOM.render(
+    &lt;NotesList&gt;
+        &lt;span&gt;hello 第一&lt;/span&gt;
+        &lt;span&gt;world 第二&lt;/span&gt;
+    &lt;/NotesList&gt;,
+    document.getElementById(&quot;container1&quot;)
+);
+
+其中：
+return (
+    &lt;div&gt;
+    {
+        React.Children.map(this.props.children,function(child){
+        return &lt;span&gt;{child}&lt;/span&gt;;
+        })
+    }
+    &lt;/div&gt;
+    );
+return后面跟的()后面必须是html标签。不能直接‘{’大括号。
+</code></pre><p>###PropTypes<br>验证组件实例的属性是否符合要求</p>
+<pre><code>/*** 组件的属性定义验证 ***/
+var MyTitle = React.createClass({
+propTypes:{
+    title:React.PropTypes.number.isRequired,
+},
+render:function(){
+    return &lt;span&gt;{this.props.title}&lt;/span&gt;;
+}});
+
+ReactDOM.render(
+    &lt;MyTitle title={520.1314}/&gt;,
+    document.getElementById(&quot;container&quot;)
+);
+
+1、propTypes: 第一个字母大小写都ok
+2、function(){
+    return &lt;span&gt;{this.props.title}&lt;/span&gt;;
+}})必须有html标签括起来
+3、title的值，string可以直接“字符串”，数字的话需要用大括号括起来&quot;{520.1314}&quot;
+
+
+否则会报类似：Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyTitle`, expected `string`.的错误
+</code></pre><p>###状态state的改变<br>模板代码</p>
+<pre><code>var LinkedButton = React.createClass({
+getInitialState:function(){
+    return ({liked : false});
+}
+,
+handleClick: function(){
+    this.setState({liked: !this.state.liked});
+}
+, 
+render: function(){
+    var text = this.state.liked ? &apos;like&apos;:&apos;haven\&apos;t liked&apos;;
+    return (&lt;p onClick={this.handleClick}&gt;
+        You {text} this.Click to toggle.
+    &lt;/p&gt;)
+}
+});
+
+ReactDOM.render(
+&lt;LinkedButton /&gt;,
+document.getElementById(&quot;container&quot;)
+);
+
+Reat 改变控件状态 state，属性props的话，一经定义，就改不了了，使用state状态的话可以改
+</code></pre><p>###表单提交<br>文本输入框(input)中的内容(value),若想读取到的话，不能使用this.props.value读取，要定义一个onChange事件的回调函数，通过event.target.value读取用户输入的值,textarea元素、select元素、radio元素都属于这种情况。</p>
+<p>1、创建组件时，value属性写法为={value},其中的value值要在此function中创建。<br>2、必须有onChange事件监听，去处理触发改变后的动作<br>3、触发改变的事件里，改变状态值的写法为：this.setState({value:event.target.value}),必须通过event.target.value去获取到事件的改变值。<br>4、getInitialState:function中，必须返回(return)一个值写法为：{value:’this is a init value.’};</p>
+<pre><code>/*** 做一个表单提交组件 ***/
+var InputComponent = React.createClass({
+getInitialState:function(){
+    return {value:&apos;this is a init value.&apos;};
+}
+,
+handleTextChange:function(event){
+    console.log(event.target.value);
+    this.setState({value:event.target.value});
+}
+,
+render: function(){
+var value = this.state.value;
+return (&lt;div&gt;
+    &lt;input type=&quot;text&quot; name=&quot;inputComponent&quot; value={value} onChange={this.handleTextChange} /&gt;
+    &lt;p&gt;{value}&lt;/p&gt;
+&lt;/div&gt;);
+}
+});
+
+
+ReactDOM.render(
+    &lt;InputComponent /&gt;
+    ,
+    document.getElementById(&quot;container&quot;)
+);
+</code></pre><p>###生命周期<br>组件的生命周期分成三个状态：</p>
+<ul>
+<li>Mount：已插入真实 DOM</li>
+<li>Updat：正在被重新渲染</li>
+<li>Unmount：已移出真实 DOM</li>
+</ul>
+<pre><code>/*** 组件的生命周期练习 ***/
+var LifeCycleComponent = React.createClass({
+    getInitialState:function(){
+     return { opacity: 1.0};
+    }
+    ,
+    componentWillMount:function(){
+        /**只会调用一次,相当于onCreate()**/
+        console.log(&quot;渲染前....&quot;+new Date().getMilliseconds());
+    }
+    ,
+    componentDidMount:function(){
+        /**只会调用一次,一次性的onResume()方法 **/
+        console.log(&quot;渲染完成&quot;+new Date().getMilliseconds());
+        setInterval(function(){
+        var mOpacity = this.state.opacity;
+        mOpacity -= 0.05;
+        if(mOpacity &lt; 0.1){
+            mOpacity = 1.0;
+        }
+        this.setState({opacity:mOpacity})
+        }.bind(this),100);
+    }
+    ,
+    componentWillUpdate:function(){
+        /**可重复调用，相当于reStart()**/
+        console.log(&quot;将要重新渲染....&quot;+new Date().getMilliseconds());
+    }
+    ,
+    componentDidUpdate:function(){
+        /**可重复调用，相当于reStart()后的onResume**/
+        console.log(&quot;重新渲染完成&quot;+new Date().getMilliseconds());
+    }
+    ,
+    componentWillUnmount:function(){
+        console.log(&quot;移出真实DOM&quot;+new Date().getMilliseconds());
+    }
+    ,
+    render: function(){
+        return (&lt;div style={{opacity:this.state.opacity}}&gt;
+            &lt;p&gt;Hello {this.props.name}!&lt;/p&gt;
+        &lt;/div&gt;);
+    }
+});
+
+ReactDOM.render(
+    &lt;LifeCycleComponent name=&quot;World&quot;/&gt;
+    ,
+    document.getElementById(&quot;container&quot;)
+);
+</code></pre><p>怎么理解生命周期里需要bind()及其bind在this参数的这个this的意义。</p>
+<p>###Ajax嵌入使用<br>使用过程中需要注意的地方：<br>1、首先需要导入jquery.js<br>2、其中标识解析时，注意，导入js是src=”jquery.min.js”,而编写React时，<script type="text/babel"></script>,是type，而不是src。<br>3、组件中</p>
+<pre><code>render:function(){
+return (&lt;div&gt;&lt;/div);/** &lt;div&gt;外面就是return的&quot;()&quot;,不能用“{}”包裹 ***/
+}
+</code></pre><p>##常见问题<br>Warning: Each child in an array or iterator should have a unique “key” prop. Check the top-level render call using <div>. See <a href="https://fb.me/react-warning-keys" target="_blank" rel="external">https://fb.me/react-warning-keys</a> for more information.</div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/04/18/React学习第一天/" data-id="cj83s9qo10007z6a85jm39gg4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/03/ReactNative学习基础-一/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ReactNative学习基础(一)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/23/xml第一天/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">xml第一天</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/28/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/23/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

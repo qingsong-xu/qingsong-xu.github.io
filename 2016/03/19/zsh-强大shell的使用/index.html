@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>zsh-强大shell的使用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="闲来无事，就想折腾折腾我的mac，哈哈 ###（1）iTerm2 是 OS X 下一款开源免费的的终端工具，我基本用它替代了原生的 Terminal。网址：http://www.iterm2.com ###（2）有了优秀的终端，我们终于可以使用 Shell 了。不过，万里长征才开始了第一步，Shell 也是分门派的，我推荐给大家的是：终极 Shell——ZSH。  安装好iTerm2后，使用时会发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zsh-强大shell的使用">
+<meta property="og:url" content="http://qingsong-xu.github.io/2016/03/19/zsh-强大shell的使用/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="闲来无事，就想折腾折腾我的mac，哈哈 ###（1）iTerm2 是 OS X 下一款开源免费的的终端工具，我基本用它替代了原生的 Terminal。网址：http://www.iterm2.com ###（2）有了优秀的终端，我们终于可以使用 Shell 了。不过，万里长征才开始了第一步，Shell 也是分门派的，我推荐给大家的是：终极 Shell——ZSH。  安装好iTerm2后，使用时会发">
+<meta property="og:updated_time" content="2017-02-28T06:54:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zsh-强大shell的使用">
+<meta name="twitter:description" content="闲来无事，就想折腾折腾我的mac，哈哈 ###（1）iTerm2 是 OS X 下一款开源免费的的终端工具，我基本用它替代了原生的 Terminal。网址：http://www.iterm2.com ###（2）有了优秀的终端，我们终于可以使用 Shell 了。不过，万里长征才开始了第一步，Shell 也是分门派的，我推荐给大家的是：终极 Shell——ZSH。  安装好iTerm2后，使用时会发">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-zsh-强大shell的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/19/zsh-强大shell的使用/" class="article-date">
+  <time datetime="2016-03-19T11:42:52.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具使用/">工具使用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      zsh-强大shell的使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>闲来无事，就想折腾折腾我的mac，哈哈</p>
+<p>###（1）iTerm2 是 OS X 下一款开源免费的的终端工具，我基本用它替代了原生的 Terminal。网址：<a href="http://www.iterm2.com" target="_blank" rel="external">http://www.iterm2.com</a></p>
+<p>###（2）有了优秀的终端，我们终于可以使用 Shell 了。不过，万里长征才开始了第一步，Shell 也是分门派的，我推荐给大家的是：<a href="http://macshuo.com/?p=676" target="_blank" rel="external">终极 Shell——ZSH</a>。</p>
+<blockquote>
+<p>安装好iTerm2后，使用时会发现没有“命令自定义别名”功能，在网上搜了下，配合使用zsh这个shell，就可以实现。<br>所以，我安装了zsh.<br>在默认终端里执行：</p>
+</blockquote>
+<pre><code>cat /etc/shells
+</code></pre><p>即可以发现目前你mac环境里的shell命令种类。没安装zsh的话,请看shell-zsh连接进行安装。<br>我的默认已经安装了：</p>
+<pre><code>cat /etc/shells
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</code></pre><p>很明显最后一个就是我说zsh终极shell。<br>查看所以文件时会发现有一个.zshrc文件，使用vim命令查看这个文件内容，在最后配置命令别名：</p>
+<pre><code>alias ll=&quot;ls -l&quot;
+alias la=&quot;ls -a&quot;
+</code></pre><p>退出保存此文件，然后使用“ll”你会发现命令没有用。<br><strong>原因在于你设置的默认shell并不是zsh这个shell,所以只要更改默认shell就可以了，如下：</strong></p>
+<pre><code>chsh -s /bin/zsh
+</code></pre><p>相关资料可看<a href="http://blog.longwin.com.tw/2011/10/macosx-shell-zsh-2011/" target="_blank" rel="external">MacOSX shell 改用 zsh</a><br>关于主题的更改，可以看<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">Themes · robbyrussell/oh-my-zsh Wiki · GitHub</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/03/19/zsh-强大shell的使用/" data-id="cj82lww0j000gr1a89bw72t2z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/19/iterm2半透明窗口/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iterm2半透明窗口
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/12/如何删除mac上的pkg包/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何删除mac上的pkg包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/27/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/22/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

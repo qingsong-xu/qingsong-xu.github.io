@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Git命令清单 | 青松的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="git的使用，首先要了解git仓库的原理，日常使用只要记住下图的6个命令就可以了。  几个专用名词的译名如下：•Workspace:工作区•Index/Stage:暂存区•Repository:仓库区（或本地仓库）•Remote:远程仓库 建立一个git仓库后，通过add命令，将track的代码由工作区workspace添加到暂存区Index，再使用commit命令，将暂存区的代码提交到git仓库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git命令清单">
+<meta property="og:url" content="http://qingsong-xu.github.io/2017/09/28/Git命令清单/index.html">
+<meta property="og:site_name" content="青松的blog">
+<meta property="og:description" content="git的使用，首先要了解git仓库的原理，日常使用只要记住下图的6个命令就可以了。  几个专用名词的译名如下：•Workspace:工作区•Index/Stage:暂存区•Repository:仓库区（或本地仓库）•Remote:远程仓库 建立一个git仓库后，通过add命令，将track的代码由工作区workspace添加到暂存区Index，再使用commit命令，将暂存区的代码提交到git仓库">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-09-28T01:30:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git命令清单">
+<meta name="twitter:description" content="git的使用，首先要了解git仓库的原理，日常使用只要记住下图的6个命令就可以了。  几个专用名词的译名如下：•Workspace:工作区•Index/Stage:暂存区•Repository:仓库区（或本地仓库）•Remote:远程仓库 建立一个git仓库后，通过add命令，将track的代码由工作区workspace添加到暂存区Index，再使用commit命令，将暂存区的代码提交到git仓库">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="青松的blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青松的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Git命令清单" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/28/Git命令清单/" class="article-date">
+  <time datetime="2017-09-28T01:30:05.000Z" itemprop="datePublished">2017-09-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git命令清单
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>git的使用，首先要了解git仓库的原理，日常使用只要记住下图的6个命令就可以了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git_construct.png"></p>
+<p>几个专用名词的译名如下：<br>•Workspace:工作区<br>•Index/Stage:暂存区<br>•Repository:仓库区（或本地仓库）<br>•Remote:远程仓库</p>
+<p>建立一个git仓库后，通过add命令，将track的代码由工作区workspace添加到暂存区Index，再使用commit命令，将暂存区的代码提交到git仓库中，并添加提交注释，这时可以在本地仓库中看到git提交记录及日志，此时代码只保存在本地仓库，多人协助的同学还无法获取到你更新的代码，所以必须通过push指令将代码“推送”到远程服务器中。</p>
+<p>1、新建仓库</p>
+<h1 id="在当前目录新建一个Git代码库"><a href="#在当前目录新建一个Git代码库" class="headerlink" title="在当前目录新建一个Git代码库"></a>在当前目录新建一个Git代码库</h1><p>git init</p>
+<h1 id="新建一个目录，将其初始化为Git代码库"><a href="#新建一个目录，将其初始化为Git代码库" class="headerlink" title="新建一个目录，将其初始化为Git代码库"></a>新建一个目录，将其初始化为Git代码库</h1><p>git init [project-name]</p>
+<h1 id="下载一个项目和它的整个代码历史"><a href="#下载一个项目和它的整个代码历史" class="headerlink" title="下载一个项目和它的整个代码历史"></a>下载一个项目和它的整个代码历史</h1><p>git clone [url]</p>
+<p>新建仓库通常我们有两种情景：<br>情景一：在github（远程服务器）创建好一个仓库，得到指定url，同时在本地开发了一些代码，并未将其初始化为git仓库：<br>1、git init  #将当前目录初始化成一个git仓库<br>2、在根目录下添加并编辑.gitignore忽略文件(子模块modules中也可有.gitignore文件，需要根据需求进行编辑)，此时可以发现项目目录被忽略的文件颜色是黑的，未被忽略的文件颜色则是明亮的。.gitignore文件的作用是将不该提交的由工具编译产生的文件进行忽略，以免提交到远程仓库后，其他人pull获取代码时破坏对方的配置信息等。这里提供一个可以帮助生成.gitignore文件内容的工具地址 <a href="https://www.gitignore.io/" target="_blank" rel="external">gitignore.io</a><br>3、git add . #注意后面跟的小点，意思是添加所有文件到git仓库中，也可以用–all或-A来替代这个小点，意思都是添加所有文件。<br>4、git commit -m “first commit” #将初次代码进行提交<br>5、git remote add origin git@github.com:qingsong-xu/ZtphTest.git   #将本地仓库和远程仓库地址进行关联，这里的远程仓库地址是git@github.com:qingsong-xu/ZtphTest.git<br>6、git push -u origin master #将仓库repository中的代码进行推送到远程仓库，此时其他人就可以在这个地址上获取到你的相应代码了。git push -u origin master 等价于 git push –set-upstream origin master,意思是将当前所在的master本地分支和远端分支进行默认关联，以后在本地master分支开发提交代码时可以直接使用命令: git push (不用跟参数<origin远程仓库名> &lt;本地分支名&gt;，每次push的完整写法应该是 git push <origin master或origin=""> <master> )<br>以上步骤就完成</master></origin></origin远程仓库名></p>
+<p>这里要特别指出.gitignore文件的重要性，因为往往很多冲突需要解决，都是有用其他人提交了该忽略的文件，导致自己pull项目下来后本地环境和代码都乱<br>了</p>
+<p>情景二：已有开发项目，需要你接手继续开发（大多数我们都是遇到这样的情况）提供Git远程仓库地址url。</p>
+<p>1、git clone 远程仓库地址url<br>2、添加.gitignore 忽略文件<br>3、git add 指定文件/–all/-A/.(‘.’同all是一样的意思)<br>4、git commit -m “提交注释”<br>5、git fetch //获取远端更新到本地仓库<br>6、git rebase origin/master(或指定别的远端) //此操作，其实是先将当期提交到本地仓库的节点代码同指定远端仓库代码进行比较，若有冲突，需要解决冲突后，通过git rebase –continue或git rebase –skip继续rebase知道完成，<br>7、rebase结束后，本地工作区代码未解决冲突合并后的代码，需要重新执行add、commit直接进行提交<br>8、commit提交后的代码，需要使用git push origin master，push到远端。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/09/28/Git命令清单/" data-id="cj83s9qnt0003z6a8obaydksn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/04/ReactNative框架的搭建-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ReactNative框架的搭建(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/28/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/23/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

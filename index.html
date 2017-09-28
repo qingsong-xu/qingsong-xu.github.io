@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>青松的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="qingsong android development">
+<meta property="og:type" content="website">
+<meta property="og:title" content="青松的blog">
+<meta property="og:url" content="http://qingsong-xu.github.io/index.html">
+<meta property="og:site_name" content="青松的blog">
+<meta property="og:description" content="qingsong android development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="青松的blog">
+<meta name="twitter:description" content="qingsong android development">
+  
+    <link rel="alternate" href="/atom.xml" title="青松的blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青松的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Git命令清单" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/28/Git命令清单/" class="article-date">
+  <time datetime="2017-09-28T01:30:05.000Z" itemprop="datePublished">2017-09-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/28/Git命令清单/">Git命令清单</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>git的使用，首先要了解git仓库的原理，日常使用只要记住下图的6个命令就可以了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git_construct.png"></p>
+<p>几个专用名词的译名如下：<br>•Workspace:工作区<br>•Index/Stage:暂存区<br>•Repository:仓库区（或本地仓库）<br>•Remote:远程仓库</p>
+<p>建立一个git仓库后，通过add命令，将track的代码由工作区workspace添加到暂存区Index，再使用commit命令，将暂存区的代码提交到git仓库中，并添加提交注释，这时可以在本地仓库中看到git提交记录及日志，此时代码只保存在本地仓库，多人协助的同学还无法获取到你更新的代码，所以必须通过push指令将代码“推送”到远程服务器中。</p>
+<p>1、新建仓库</p>
+<h1 id="在当前目录新建一个Git代码库"><a href="#在当前目录新建一个Git代码库" class="headerlink" title="在当前目录新建一个Git代码库"></a>在当前目录新建一个Git代码库</h1><p>git init</p>
+<h1 id="新建一个目录，将其初始化为Git代码库"><a href="#新建一个目录，将其初始化为Git代码库" class="headerlink" title="新建一个目录，将其初始化为Git代码库"></a>新建一个目录，将其初始化为Git代码库</h1><p>git init [project-name]</p>
+<h1 id="下载一个项目和它的整个代码历史"><a href="#下载一个项目和它的整个代码历史" class="headerlink" title="下载一个项目和它的整个代码历史"></a>下载一个项目和它的整个代码历史</h1><p>git clone [url]</p>
+<p>新建仓库通常我们有两种情景：<br>情景一：在github（远程服务器）创建好一个仓库，得到指定url，同时在本地开发了一些代码，并未将其初始化为git仓库：<br>1、git init  #将当前目录初始化成一个git仓库<br>2、在根目录下添加并编辑.gitignore忽略文件(子模块modules中也可有.gitignore文件，需要根据需求进行编辑)，此时可以发现项目目录被忽略的文件颜色是黑的，未被忽略的文件颜色则是明亮的。.gitignore文件的作用是将不该提交的由工具编译产生的文件进行忽略，以免提交到远程仓库后，其他人pull获取代码时破坏对方的配置信息等。这里提供一个可以帮助生成.gitignore文件内容的工具地址 <a href="https://www.gitignore.io/" target="_blank" rel="external">gitignore.io</a><br>3、git add . #注意后面跟的小点，意思是添加所有文件到git仓库中，也可以用–all或-A来替代这个小点，意思都是添加所有文件。<br>4、git commit -m “first commit” #将初次代码进行提交<br>5、git remote add origin git@github.com:qingsong-xu/ZtphTest.git   #将本地仓库和远程仓库地址进行关联，这里的远程仓库地址是git@github.com:qingsong-xu/ZtphTest.git<br>6、git push -u origin master #将仓库repository中的代码进行推送到远程仓库，此时其他人就可以在这个地址上获取到你的相应代码了。git push -u origin master 等价于 git push –set-upstream origin master,意思是将当前所在的master本地分支和远端分支进行默认关联，以后在本地master分支开发提交代码时可以直接使用命令: git push (不用跟参数<origin远程仓库名> &lt;本地分支名&gt;，每次push的完整写法应该是 git push <origin master或origin=""> <master> )<br>以上步骤就完成</master></origin></origin远程仓库名></p>
+<p>这里要特别指出.gitignore文件的重要性，因为往往很多冲突需要解决，都是有用其他人提交了该忽略的文件，导致自己pull项目下来后本地环境和代码都乱<br>了</p>
+<p>情景二：已有开发项目，需要你接手继续开发（大多数我们都是遇到这样的情况）提供Git远程仓库地址url。</p>
+<p>1、git clone 远程仓库地址url<br>2、添加.gitignore 忽略文件<br>3、git add 指定文件/–all/-A/.(‘.’同all是一样的意思)<br>4、git commit -m “提交注释”<br>5、git fetch //获取远端更新到本地仓库<br>6、git rebase origin/master(或指定别的远端) //此操作，其实是先将当期提交到本地仓库的节点代码同指定远端仓库代码进行比较，若有冲突，需要解决冲突后，通过git rebase –continue或git rebase –skip继续rebase知道完成，<br>7、rebase结束后，本地工作区代码未解决冲突合并后的代码，需要重新执行add、commit直接进行提交<br>8、commit提交后的代码，需要使用git push origin master，push到远端。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/09/28/Git命令清单/" data-id="cj83s9qnt0003z6a8obaydksn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ReactNative框架的搭建-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/04/ReactNative框架的搭建-一/" class="article-date">
+  <time datetime="2017-05-04T14:41:43.000Z" itemprop="datePublished">2017-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、安装图标、名字<br>iOS:1.info.plist  2、LaunchScreen.xib</p>
+<p>二、启动页、启动图片</p>
+<p>三、采用第三方控件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/05/04/ReactNative框架的搭建-一/" data-id="cj83s9qo00006z6a8f5d4vojc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ReactNative学习基础-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/03/ReactNative学习基础-一/" class="article-date">
+  <time datetime="2017-05-03T11:29:27.000Z" itemprop="datePublished">2017-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ReactNative最头痛之—-wrap_content  match_parent</p>
+<p>ReactNative之生命周期：<br>1、场景A组件中只定义Navigator，并设置B组件为第一个默认组件，B组件中调用自定义的C组件控件<br>首先需要了解组件生命周期有那几个函数：</p>
+<pre><code>componentWillMount(){
+
+ }
+
+ componentDidMount(){
+
+}
+
+shouldComponentUpdate(){
+     return true;
+ }
+
+ componentWillUpdate(){
+
+ }
+
+ componentDidUpdate(){
+
+ }
+</code></pre><p>先解释说明一下生命周期的含义   </p>
+<p>执行后的：</p>
+<p><a href="http://www.tuicool.com/articles/nu6zInB" target="_blank" rel="external">http://www.tuicool.com/articles/nu6zInB</a>  </p>
+<p>####Iconfont的使用：这是旧语法<br>1、下载对应的model<br>如：<br>npm install –save react-native-iconic-font<br>这时你会在当前RN项目下的找到你这个font的model,如图</p>
+<p>2、Android将想要引入的ttf文件拷贝到指定的android assets/fonts/目录下<br>如图：</p>
+<p>3、在app/build.gradle文件里添加compile指令：<br>compile ‘com.facebook.react:react-native:0.16.+’</p>
+<p>4、在RN项目的js文件中去引用文字图标，代码如：</p>
+<pre><code>&lt;Text style={{fontFamily: 'fontawesome', fontSize: 30}}&gt;
+                    {icon(&apos;twitter&apos;)}
+                &lt;/Text&gt;
+
+这个注意属性fontFamily，值和导入的ttf文件的文件名必须保持一致。否则显示的是一个 ‘X’图标，是不正常的。
+</code></pre><p>5、如果刷新查看不到具体效果，重新运行指令react-native run-android 安装app即可。</p>
+<p>####Iconfont的使用：新语法<br>1、下载对应的model<br><a href="https://github.com/qingsong-xu/react-native-vector-icons" target="_blank" rel="external">https://github.com/qingsong-xu/react-native-vector-icons</a></p>
+<p>2、引入到Android中进行编译<br>3、在app/build.gradle文件里添加compile指令：<br>compile project(‘:react-native-vector-icons’)<br>4、在RN项目中导入使用</p>
+<pre><code>import Icon from &apos;react-native-vector-icons/FontAwesome&apos;;
+
+&lt;TabNavigatorItem selected={this.state.selectedTab === &apos;首页&apos;}
+                                  ......
+                                  renderIcon={() =&gt; &lt;Icon name=&quot;home&quot; size={22} color=&quot;gray&quot; /&gt;}
+                                  renderSelectedIcon={() =&gt; &lt;Icon name=&quot;home&quot; size={22} color=&quot;#3b95d3&quot; /&gt;}
+                                  .........
+                &lt;/TabNavigatorItem&gt;
+</code></pre><p>###自定义控件时，往往会发现不指定具体高度的时候组合控件会比ReactNative的单控件要高出很多，所以这里要知道，是需要指定具体控件高度的。</p>
+<p>自定义控件时，涉及到PropsType指定属性，</p>
+<pre><code>ReactPropTypes = {
+array: createPrimitiveTypeChecker(&apos;array&apos;),
+bool: createPrimitiveTypeChecker(&apos;boolean&apos;),
+func: createPrimitiveTypeChecker(&apos;function&apos;),
+number: createPrimitiveTypeChecker(&apos;number&apos;),
+object: createPrimitiveTypeChecker(&apos;object&apos;),
+string: createPrimitiveTypeChecker(&apos;string&apos;),
+symbol: createPrimitiveTypeChecker(&apos;symbol&apos;),
+
+any: createAnyTypeChecker(),
+arrayOf: createArrayOfTypeChecker,
+element: createElementTypeChecker(),
+instanceOf: createInstanceTypeChecker,
+node: createNodeChecker(),
+objectOf: createObjectOfTypeChecker,
+oneOf: createEnumTypeChecker,
+oneOfType: createUnionTypeChecker,
+shape: createShapeTypeChecker
+
+
+弄清楚具体控件属性的意思
+</code></pre><p>####ListView实现GridView效果要领：<br>1、Listview中可以使用SrcollView的所有效果，包括：horizontal={true}，此属性使得排列方向为横向。但是若使用此属性后，会发现，items都会被渲染，只是方向改变而已，所以不能用此属性来实现GridView</p>
+<p>2、ScrollView中有属性contentContainerStyle，此style是将定义的style应用到内容容器包裹的item中，说白了就是容器属性，所以设置此style为：</p>
+<pre><code>contentContainerStyle={
+    {
+     flexDirection: &apos;row&apos;,
+        flexWrap: &apos;wrap&apos;,
+     alignItems:&apos;center&apos;,
+     justifyContent:&apos;center&apos;
+    }
+}
+
+首先设置内容为横向，其次设置子items为自动换行，alignItems:&apos;center&apos;,justifyContent:&apos;center&apos;这两个属性只是为了让内容居中而已
+</code></pre><p>###ReactNative全局变量如何创建和使用</p>
+<p>可以的</p>
+<p>哈哈</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/05/03/ReactNative学习基础-一/" data-id="cj83s9qny0005z6a8juzq0x35" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React学习第一天" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/18/React学习第一天/" class="article-date">
+  <time datetime="2017-04-18T08:04:48.000Z" itemprop="datePublished">2017-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/18/React学习第一天/">React学习第一天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###理解ReactDOM.render<br>ReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点<br>1、此方法接受两个参数，中间用逗号隔开，第一个参数要么是<div>html块，要么是组件。直接写{} js代码是错误的。<br>2、有且只能有一个顶层标签，有两个平级的顶层标签会出错</div></p>
+<p>###组件 React.createClass</p>
+<pre><code>var ComponentModel =  React.createClass（{
+    render:function(){ return ****; }
+    }）;
+</code></pre><p>1、组件只能包含一个顶层标签，不能包含两个顶层标签，否则报错<br>2、组件属性名，避免和JavaScript的保留字冲突，class改成className，for改成hemlFor。(自己试验了下，不改也是ok的，奇怪了)<br>3、 React.createClass(),括号里，必须用‘{’大括号把render:function(){return <em>*</em>;}包裹起来</p>
+<p>###this.props.children<br>this.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点<br>这里比较有意思的是：</p>
+<pre><code>var NotesList = React.createClass({
+render: function(){
+    return (
+    &lt;div&gt;
+    {
+        React.Children.map(this.props.children,function(child){
+        return &lt;span&gt;{child}&lt;/span&gt;;
+        })
+    }
+    &lt;/div&gt;
+    );
+}
+});
+
+ReactDOM.render(
+    &lt;NotesList&gt;
+        &lt;span&gt;hello 第一&lt;/span&gt;
+        &lt;span&gt;world 第二&lt;/span&gt;
+    &lt;/NotesList&gt;,
+    document.getElementById(&quot;container1&quot;)
+);
+
+其中：
+return (
+    &lt;div&gt;
+    {
+        React.Children.map(this.props.children,function(child){
+        return &lt;span&gt;{child}&lt;/span&gt;;
+        })
+    }
+    &lt;/div&gt;
+    );
+return后面跟的()后面必须是html标签。不能直接‘{’大括号。
+</code></pre><p>###PropTypes<br>验证组件实例的属性是否符合要求</p>
+<pre><code>/*** 组件的属性定义验证 ***/
+var MyTitle = React.createClass({
+propTypes:{
+    title:React.PropTypes.number.isRequired,
+},
+render:function(){
+    return &lt;span&gt;{this.props.title}&lt;/span&gt;;
+}});
+
+ReactDOM.render(
+    &lt;MyTitle title={520.1314}/&gt;,
+    document.getElementById(&quot;container&quot;)
+);
+
+1、propTypes: 第一个字母大小写都ok
+2、function(){
+    return &lt;span&gt;{this.props.title}&lt;/span&gt;;
+}})必须有html标签括起来
+3、title的值，string可以直接“字符串”，数字的话需要用大括号括起来&quot;{520.1314}&quot;
+
+
+否则会报类似：Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyTitle`, expected `string`.的错误
+</code></pre><p>###状态state的改变<br>模板代码</p>
+<pre><code>var LinkedButton = React.createClass({
+getInitialState:function(){
+    return ({liked : false});
+}
+,
+handleClick: function(){
+    this.setState({liked: !this.state.liked});
+}
+, 
+render: function(){
+    var text = this.state.liked ? &apos;like&apos;:&apos;haven\&apos;t liked&apos;;
+    return (&lt;p onClick={this.handleClick}&gt;
+        You {text} this.Click to toggle.
+    &lt;/p&gt;)
+}
+});
+
+ReactDOM.render(
+&lt;LinkedButton /&gt;,
+document.getElementById(&quot;container&quot;)
+);
+
+Reat 改变控件状态 state，属性props的话，一经定义，就改不了了，使用state状态的话可以改
+</code></pre><p>###表单提交<br>文本输入框(input)中的内容(value),若想读取到的话，不能使用this.props.value读取，要定义一个onChange事件的回调函数，通过event.target.value读取用户输入的值,textarea元素、select元素、radio元素都属于这种情况。</p>
+<p>1、创建组件时，value属性写法为={value},其中的value值要在此function中创建。<br>2、必须有onChange事件监听，去处理触发改变后的动作<br>3、触发改变的事件里，改变状态值的写法为：this.setState({value:event.target.value}),必须通过event.target.value去获取到事件的改变值。<br>4、getInitialState:function中，必须返回(return)一个值写法为：{value:’this is a init value.’};</p>
+<pre><code>/*** 做一个表单提交组件 ***/
+var InputComponent = React.createClass({
+getInitialState:function(){
+    return {value:&apos;this is a init value.&apos;};
+}
+,
+handleTextChange:function(event){
+    console.log(event.target.value);
+    this.setState({value:event.target.value});
+}
+,
+render: function(){
+var value = this.state.value;
+return (&lt;div&gt;
+    &lt;input type=&quot;text&quot; name=&quot;inputComponent&quot; value={value} onChange={this.handleTextChange} /&gt;
+    &lt;p&gt;{value}&lt;/p&gt;
+&lt;/div&gt;);
+}
+});
+
+
+ReactDOM.render(
+    &lt;InputComponent /&gt;
+    ,
+    document.getElementById(&quot;container&quot;)
+);
+</code></pre><p>###生命周期<br>组件的生命周期分成三个状态：</p>
+<ul>
+<li>Mount：已插入真实 DOM</li>
+<li>Updat：正在被重新渲染</li>
+<li>Unmount：已移出真实 DOM</li>
+</ul>
+<pre><code>/*** 组件的生命周期练习 ***/
+var LifeCycleComponent = React.createClass({
+    getInitialState:function(){
+     return { opacity: 1.0};
+    }
+    ,
+    componentWillMount:function(){
+        /**只会调用一次,相当于onCreate()**/
+        console.log(&quot;渲染前....&quot;+new Date().getMilliseconds());
+    }
+    ,
+    componentDidMount:function(){
+        /**只会调用一次,一次性的onResume()方法 **/
+        console.log(&quot;渲染完成&quot;+new Date().getMilliseconds());
+        setInterval(function(){
+        var mOpacity = this.state.opacity;
+        mOpacity -= 0.05;
+        if(mOpacity &lt; 0.1){
+            mOpacity = 1.0;
+        }
+        this.setState({opacity:mOpacity})
+        }.bind(this),100);
+    }
+    ,
+    componentWillUpdate:function(){
+        /**可重复调用，相当于reStart()**/
+        console.log(&quot;将要重新渲染....&quot;+new Date().getMilliseconds());
+    }
+    ,
+    componentDidUpdate:function(){
+        /**可重复调用，相当于reStart()后的onResume**/
+        console.log(&quot;重新渲染完成&quot;+new Date().getMilliseconds());
+    }
+    ,
+    componentWillUnmount:function(){
+        console.log(&quot;移出真实DOM&quot;+new Date().getMilliseconds());
+    }
+    ,
+    render: function(){
+        return (&lt;div style={{opacity:this.state.opacity}}&gt;
+            &lt;p&gt;Hello {this.props.name}!&lt;/p&gt;
+        &lt;/div&gt;);
+    }
+});
+
+ReactDOM.render(
+    &lt;LifeCycleComponent name=&quot;World&quot;/&gt;
+    ,
+    document.getElementById(&quot;container&quot;)
+);
+</code></pre><p>怎么理解生命周期里需要bind()及其bind在this参数的这个this的意义。</p>
+<p>###Ajax嵌入使用<br>使用过程中需要注意的地方：<br>1、首先需要导入jquery.js<br>2、其中标识解析时，注意，导入js是src=”jquery.min.js”,而编写React时，<script type="text/babel"></script>,是type，而不是src。<br>3、组件中</p>
+<pre><code>render:function(){
+return (&lt;div&gt;&lt;/div);/** &lt;div&gt;外面就是return的&quot;()&quot;,不能用“{}”包裹 ***/
+}
+</code></pre><p>##常见问题<br>Warning: Each child in an array or iterator should have a unique “key” prop. Check the top-level render call using <div>. See <a href="https://fb.me/react-warning-keys" target="_blank" rel="external">https://fb.me/react-warning-keys</a> for more information.</div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/04/18/React学习第一天/" data-id="cj83s9qo10007z6a85jm39gg4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-xml第一天" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/23/xml第一天/" class="article-date">
+  <time datetime="2017-03-22T23:19:56.000Z" itemprop="datePublished">2017-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/23/xml第一天/">xml第一天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##XML学习<br>xml - Expansible Mark Language 可拓展性语言，主要用处：1、用于描述关系  2、作为配置文件<br>（最初是w3c想让其替代html，然而并没有）</p>
+<p>xml的重要组成部分：1、文档声明 &lt;?xml version=”1.0” encoding=”UTF-8” standalone=”no” ?&gt;<br>version=”1.0”//遵循的版本号<br>encoding=“UTF-8”//文档编码格式<br>standalone=”no”//是否独立存在，no代表不独立，但是IE浏览器仍然可以打开，是没有遵循xml的规范，忽略了这个属性</p>
+<p>注意：这里主要涉及到的是“乱码”问题。</p>
+<p>2、元素（1）：xml元素指xml文件中出现的–标签。element,标签分为开始标签和结束标签，还有1、包含标签体的标签  2、不包含标签体的标签。</p>
+<p>标签中也可以嵌套若干子标签，但是不能随意嵌套，必须合理配对。</p>
+<p>格式良好的xml文档必须有且只有一个根标签，其他的标签都是这个标签的子孙标签。</p>
+<p>元素（2）：对于xml标签中出现的所有空格和换行，xml解析都会当作标签内容进行处理。例如：</p>
+<pre><code>&lt;网址&gt;www.baidu.com&lt;/网址&gt;
+
+&lt;网址&gt;
+    www.baidu.com
+&lt;/网址&gt;
+</code></pre><p>上面两种意义是不一样的。所以编写xml文件时，换行和缩进的方式的“良好”书写习惯可能要被迫改变。</p>
+<p>元素（3）：命名规范<br>一个xml元素可以包含字母、数字以及其他一些可见字符，但是必须遵守规范：1、区分大小写，如</p><p></p><p>是不同的两个标记。2、不能以数字或“_”（下划线）开头。3、不能以xml（或Xml，XML等）开头。4、不能包含空格。5、中间不能包含冒号（：）。</p>
+<p>3、属性：·一个标签可以有多个属性，每个属性有自己的命名和取值，如：<input name="text"><br>·属性值一定要有双引号（“”）或单引号（‘）引起了。<br>·定义属性必须遵循与标签相同的命名规范<br>·多学一招：在xml技术中，标签属性所代表的信息，也可以被改成用子元素的形式描述，例如：</p>
+<pre><code>&lt;input&gt;
+    &lt;name&gt;text&lt;/name&gt;
+&lt;/input&gt;
+</code></pre><p>4、注释：xml文件中的注释采用：<!--注释--><br>（1）xml声明之前是不允许有注释的。<br>（2）注释不能嵌套。<!-- zhushi <!-- hahh --> –&gt; 这样是有问题的。</p>
+<p>5、CDATA区：<br>编写xml文件时，不想被解析引擎解析执行的，想当做原始内容处理的，可以放到CDATA区，这样xml程序会原封不动的输出。如：</p>
+<pre><code>&lt;![CDATA[
+    &lt;aa&gt;
+    严封不动输出！
+    &lt;/aa&gt;
+]]&gt;
+</code></pre><p>6、转义字符<br>对于一些单个字符，若想显示其原始样式，也可以使用转义的形式处理。简而言之，言而简之：若是想输出给人看，使用转义字符来代替；若想给机器看，让其原始输出，则才有CDATA区。</p>
+<p>特殊字符   替代字符<br> &amp;          &amp;<br> &lt;          &lt;</p>
+<blockquote>
+<pre><code>&amp;gt;
+</code></pre><p> “          &quot;<br> ‘          &apos;</p>
+</blockquote>
+<p> 7、处理指令：处理指令，检查PI（processing instruction）.处理指令用来指挥解析引擎如何解析xml文档内容.<br> 通知xml解析引擎，应用css文件显示xml文档内容。语法：”&lt;?”开头”?&gt;”结尾。常见的如：&lt;?xml-stylesheet type=”text/css” href=”1.css” ?&gt;</p>
+<p> xml约束概述:<br> 1、什么是xml约束，在xml技术里，可以编写一个文档来约束另一个xml文档的书写规范，称之为xml约束。<br> 2、为什么要约束，凡事都需要xml约束来规范。<br> 3、常用的约束技术：xml DTD、xml Schema。</p>
+<p> DTD约束快速入门：Document type definition,文档类型定义。 &lt;!DOCTYPE 跟标签 SYSTEM “book.dtd” &gt;</p>
+<pre><code> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;!DOCTYPE 书架 SYSTEM &quot;books.dtd&quot;&gt;
+&lt;书架&gt;
+    &lt;书&gt;
+        &lt;书名&gt;哎呦&lt;/书名&gt;
+        &lt;作者&gt;你觉得呢&lt;/作者&gt;
+        &lt;售价&gt;23.9&lt;/售价&gt;
+    &lt;/书&gt;
+    &lt;书&gt;
+        &lt;书名&gt;哎呦&lt;/书名&gt;
+        &lt;作者&gt;你觉得呢&lt;/作者&gt;
+        &lt;售价&gt;23.9&lt;/售价&gt;
+    &lt;/书&gt;
+    &lt;书&gt;
+        &lt;书名&gt;哎呦&lt;/书名&gt;
+        &lt;作者&gt;你觉得呢&lt;/作者&gt;
+        &lt;售价&gt;23.9&lt;/售价&gt;
+    &lt;/书&gt;
+&lt;/书架&gt;
+</code></pre><p>##编写DTD，<br>有两种编写方式，可以作为单个文件进行引入，也可以直接写在内部。</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;no&quot;?&gt;
+&lt;!DOCTYPE 书架[
+    &lt;!ELEMENT 书架(书+)&gt;
+    &lt;!ELEMENT 书(书名，作者，售价)&gt;
+    &lt;!ELEMENT 书名(#PCDATA)&gt;
+    &lt;!ELEMENT 作者(#PCDATA)&gt;
+    &lt;!ELEMENT 售价(#PCDATA)&gt;
+]&gt;
+&lt;书架&gt;
+    &lt;书&gt;
+        &lt;书名&gt;哎呦&lt;/书名&gt;
+        &lt;作者&gt;你觉得呢&lt;/作者&gt;
+        &lt;售价&gt;23.9&lt;/售价&gt;
+    &lt;/书&gt;
+    &lt;书&gt;
+        &lt;书名&gt;哎呦&lt;/书名&gt;
+        &lt;作者&gt;你觉得呢&lt;/作者&gt;
+        &lt;售价&gt;23.9&lt;/售价&gt;
+    &lt;/书&gt;
+    &lt;书&gt;
+        &lt;书名&gt;哎呦&lt;/书名&gt;
+        &lt;作者&gt;你觉得呢&lt;/作者&gt;
+        &lt;售价&gt;23.9&lt;/售价&gt;
+    &lt;/书&gt;
+&lt;/书架&gt;
+</code></pre><p>·当引用的文档在本地时，采用&lt;!DOCTYPE 书架 SYSTEM “book.dtd”&gt;<br>·当引用的文件是一个公共的文件时，采用&lt;!DOCTYPE 文档根节点 PUBLIC “DTD名称” “DTD的url地址”&gt;</p>
+<p>元素的定义：<br>&lt;!ELEMENT 元素名 元素里的内容&gt;<br>属性的定义：<br>&lt;!ATTLIST 元素名 属性名1 属性值类型 设置说明<br>                 属性名1 属性值类型 设置说明<br>                 ……….<br>&gt;</p>
+<p>&lt;!ENTITY AA “I LOVE YOU”&gt; //引用实体<br>&lt;!ENTITY % 实体名称 “实体内容”&gt;//参数实体，只能被DTD文件自身使用，做到代码的重用和简化</p>
+<p>##Dom和sax解析方法的区别：<br>1、dom解析的优点是对文档crud比较方便，缺点是占用内存比较大<br>2、sax解析的优点是占用内存少，解析速度快，缺点是只适合做文档读取，不适合做文档的crud</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/03/23/xml第一天/" data-id="cj83s9qof000gz6a8z3pkxg52" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-win7和ubuntu双系统出现grup-rescue问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/" class="article-date">
+  <time datetime="2017-02-15T18:04:40.000Z" itemprop="datePublished">2017-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/">win7和ubuntu双系统出现grup rescue问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>grub rescue&gt; ls<br>(hd0) (hd0,msdos1) (hd0,msdos5) (hd0,msdos6) (hd1,msdos1) (hd0,msdos2) (hd0,msdos3) (hd1) ##我的硬盘是两块2T的，hd1上是win7 三个区，hd0上 装的是ubuntu和kubuntu<br>grub rescue&gt; ls (hd1)/<br>文件系统未知 ##此处应该是英文<br>grub rescue&gt; ls (hd0)/<br>文件系统是 ext2 ##鬼知道为什么是 ext2<br>grub rescue&gt; set root=(hd0,1) ## 也可以是set root=(hd0,msdos1) ,当然你的可能是 (hd0,6)<br>grub rescue&gt; set prefix=(hd0,1)/grub ##这里就是和网上查到的版本的区别，没有中间的/boot/<br>grub rescue&gt; insmod normal ##直接这样写就可以，写那些路径反而有可能会错，不要问我为什么，我叫不知道<br>grub rescue&gt; normal ##进入正常的 ubuntu启动菜单<br>选择进入恢复模式(recovery mode)，ubuntu 14.04的恢复模式在高级选项里面，如果您选择了您删掉的那个版本的，不好意思，上面步骤重来一遍<br>选择 grub Update grub bootloader ##应该是倒数第四项<br>选择 YES<br>选择 resume Resume normal boot<br>好吧，上面选择了倒数第四项，重启还是问题重现，所以，还是选择倒数第二项吧 ，root Drop to root shell prompt<br>然后输入<br>sudo update-grub<br>sudo grub-install /dev/sda</p>
+<p>双系统 window7和 ubuntu13.04 ，Ubuntu两个分区分别是 /和交换分区，没有/boot 分区 ubuntu13.04安装的时候就没有grub引导项，一直没用也就没管。后来室友在Windows 中把linux的分区给删了，导致开机grub rescue，按照网上教程 到最后一步输入 insmod /boot/grub/normal.mod 显示 not found…..是不是13.04的grub路径不对啊。。求大神！！！</p>
+<p>具体如下<br>error: no such partition<br>grub rescue&gt; ls (hd0,3)/boot/grub<br>./../unicode.pf2 x86_64-efi/ locale/ fonts/ grub.efi grubenv grub.cfg<br>grub rescue&gt; set root=(hd0,3)<br>grub rescue&gt; set prefix=(hd0,3)/boot/grub<br>grub rescue&gt; insmod /boot/grub/normal.mod<br>error: file ‘/boot/grub/normal.mod’ not found.</p>
+<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?p=3024640" target="_blank" rel="external">http://forum.ubuntu.org.cn/viewtopic.php?p=3024640</a><br><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=458174" target="_blank" rel="external">http://forum.ubuntu.org.cn/viewtopic.php?t=458174</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/" data-id="cj83s9qoe000fz6a876b2pbig" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gradle多渠道打包、配置签名信息" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/16/gradle多渠道打包、配置签名信息/" class="article-date">
+  <time datetime="2017-01-16T14:17:37.000Z" itemprop="datePublished">2017-01-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/gradle多渠道打包、配置签名信息/">gradle多渠道打包、配置签名信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定制生成的apk文件名</p>
+<pre><code>applicationVariants.all { variant -&gt;
+         if (variant.buildType.name.equals(&apos;release&apos;)) {
+             variant.outputs.each { output -&gt;
+                 def outputFile = output.outputFile
+                 if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {
+                     def fileName = &quot;gradle4android_v${defaultConfig.versionName}_${releaseTime()}_${variant.flavorName}.apk&quot;
+                     output.outputFile = new File(outputFile.parent, fileName)
+                 }
+             }
+         }
+     }
+</code></pre><p>  Could not find method releaseTime() for arguments [] on com.android.build.gradle.internal.api.ApplicationVariantImpl_Decorated@50fe0eed.　<br>  为什么我抱这种错误：<br>releaseTime 是自定义这个我没有定义　　　　　　</p>
+<p>yyyyMMddHHmm打包时间戳方法：</p>
+<pre><code>def releaseTime() {
+      return new Date().format(&quot;yyyyMMddHHmm&quot;, TimeZone.getTimeZone(&quot;GMT+8&quot;))
+}
+</code></pre><p>添加到build.gradle文件中android{…} 方法体外</p>
+<p>打包方法：</p>
+<pre><code>applicationVariants.all { variant -&gt;
+    if (variant.buildType.name.equals(&apos;release&apos;)) {
+          variant.outputs.each { output -&gt;
+        def outputFile = output.outputFile
+            if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {
+                  def fileName = &quot;MinicashboxSdk_${releaseTime()}.apk&quot;
+              output.outputFile = new File(outputFile.parent, fileName)
+            }
+          }
+    }
+  }
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2017/01/16/gradle多渠道打包、配置签名信息/" data-id="cj83s9qo60009z6a8zpnfxlgr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mac中如何卸载pkg包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/02/mac中如何卸载pkg包/" class="article-date">
+  <time datetime="2016-12-02T15:34:57.000Z" itemprop="datePublished">2016-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/02/mac中如何卸载pkg包/">mac中如何卸载pkg包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、问题背景"><a href="#一、问题背景" class="headerlink" title="一、问题背景"></a>一、问题背景</h2><p>在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。</p>
+<p>Mac OS X 10.9.2</p>
+<h2 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h2><p>###1、打开“应用程序”-&gt;“实用工具(Utilities)”-&gt;“终端(Terminal)”。</p>
+<p>###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。</p>
+<p>com.apple.pkg.IncompatibleKextConfigData.3-15<br>com.apple.pkg.iPhoto_AppStore<br>com.apple.pkg.iTunesAccess<br>com.apple.pkg.iTunesX<br>com.apple.pkg.iTunesXPatch<br>com.apple.pkg.JavaEssentials<br>com.apple.pkg.JavaForMacOSX107<br>com.apple.pkg.JavaMDNS<br>com.apple.pkg.JavaSecurity<br>com.apple.pkg.JavaTools<br>com.apple.pkg.Keynote6<br>如图，我们安装了JavaForMacOSX107，假设我们想卸载，那么继续以下步骤。</p>
+<p>###3、使用”cd /private/var/db/receipts”，”ls”命令，列出所有的<em>.bom和</em>.plist文件。</p>
+<p>com.apple.pkg.JavaEssentials.bom<br>com.apple.pkg.JavaEssentials.plist<br>com.apple.pkg.JavaForMacOSX107.bom<br>com.apple.pkg.JavaForMacOSX107.plist<br>com.apple.pkg.JavaMDNS.bom<br>com.apple.pkg.JavaMDNS.plist<br>com.apple.pkg.JavaSecurity.bom<br>com.apple.pkg.JavaSecurity.plist<br>com.apple.pkg.JavaTools.bom<br>com.apple.pkg.JavaTools.plist<br>com.apple.pkg.Keynote6.bom<br>如图，com.apple.pkg.JavaForMacOSX107.bom记录了这个包所有的关联文件。</p>
+<p>###4、使用”lsbom com.apple.pkg.JavaForMacOSX107.bom”，查看所有关联文件。</p>
+<p>.    40755    0/0<br>./System    40755    0/0<br>./System/Library    40755    0/0<br>./System/Library/Java    40755    0/0<br>./System/Library/Java/JavaVirtualMachines    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-rt.jar100644    0/0    123448    2146194501<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-string.jar    100644    0/0    42031    862452543<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar    100644    0/0    3515769    438110220<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.ja100644    0/0    31193251    1347176735<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/dt.jar    120755    0/0    18    3676296750    ../Home/lib/dt.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar    120755    0/0    19    925190531    ../Home/lib/jce.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jconsole.jar    120755    0/0    24    3933942479    ../Home/lib/jconsole.jar<br>如图，此包的文件主要在/System/Library/Java/JavaVirtualMachines/1.6.0.jdk文件夹中，只要删除此文件夹即可。</p>
+<p>###5、进入/System/Library/Java/JavaVirtualMachines文件夹，执行”sudo rm -r 1.6.0.jdk”命令。</p>
+<p>###6、整个pkg删除完成。</p>
+<h2 id="三、注意"><a href="#三、注意" class="headerlink" title="三、注意"></a>三、注意</h2><p>第5步，sudo需要输入管理员密码，此密码必须要设置。<br>在“系统偏好设置”-&gt;“用户与群组”中设置管理员密码。</p>
+<p>也可使用开源的统一卸载方式</p>
+<p><a href="https://github.com/mpapis/pkg_uninstaller" target="_blank" rel="external">https://github.com/mpapis/pkg_uninstaller</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/12/02/mac中如何卸载pkg包/" data-id="cj83s9qoa000cz6a8lgecmn2b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-让Go2Shell支持iTerm2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/01/让Go2Shell支持iTerm2/" class="article-date">
+  <time datetime="2016-12-01T11:20:41.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/01/让Go2Shell支持iTerm2/">让Go2Shell支持iTerm2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="让Go2Shell支持iTerm2"><a href="#让Go2Shell支持iTerm2" class="headerlink" title="让Go2Shell支持iTerm2"></a>让Go2Shell支持iTerm2</h2><p>安装过后发现找不到Go2Shell的配置，Google后找到解决方案：在终端里敲如下命令即可：open -a Go2Shell –args config在打开的窗口中切换成iTerm2即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/12/01/让Go2Shell支持iTerm2/" data-id="cj83s9qp0000qz6a83csmjf2l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-解决Android-Studio报错：DefaultAndroidProject-Unsupported-major-minor-version-52-0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/27/解决Android-Studio报错：DefaultAndroidProject-Unsupported-major-minor-version-52-0/" class="article-date">
+  <time datetime="2016-10-27T10:11:06.000Z" itemprop="datePublished">2016-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/27/解决Android-Studio报错：DefaultAndroidProject-Unsupported-major-minor-version-52-0/">解决Android Studio报错：DefaultAndroidProject : Unsupported major.minor version 52.0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://blog.csdn.net/ouyang_peng/article/details/51799001" target="_blank" rel="external">http://blog.csdn.net/ouyang_peng/article/details/51799001</a>[<a href="http://blog.csdn.net/ouyang_peng/article/details/51799001" target="_blank" rel="external">http://blog.csdn.net/ouyang_peng/article/details/51799001</a>]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/10/27/解决Android-Studio报错：DefaultAndroidProject-Unsupported-major-minor-version-52-0/" data-id="cj83s9qow000nz6a8sxow4eq1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/28/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/23/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mac中如何卸载pkg包 | 青松的blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、问题背景在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。 Mac OS X 10.9.2 二、解决方案###1、打开“应用程序”-&amp;gt;“实用工具(Utilities)”-&amp;gt;“终端(Terminal)”。 ###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。 com.apple.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac中如何卸载pkg包">
+<meta property="og:url" content="http://qingsong-xu.github.io/2016/12/02/mac中如何卸载pkg包/index.html">
+<meta property="og:site_name" content="青松的blog">
+<meta property="og:description" content="一、问题背景在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。 Mac OS X 10.9.2 二、解决方案###1、打开“应用程序”-&amp;gt;“实用工具(Utilities)”-&amp;gt;“终端(Terminal)”。 ###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。 com.apple.">
+<meta property="og:updated_time" content="2016-12-02T07:37:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mac中如何卸载pkg包">
+<meta name="twitter:description" content="一、问题背景在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。 Mac OS X 10.9.2 二、解决方案###1、打开“应用程序”-&amp;gt;“实用工具(Utilities)”-&amp;gt;“终端(Terminal)”。 ###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。 com.apple.">
+  
+    <link rel="alternate" href="/atom.xml" title="青松的blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">青松的blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qingsong-xu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mac中如何卸载pkg包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/02/mac中如何卸载pkg包/" class="article-date">
+  <time datetime="2016-12-02T15:34:57.000Z" itemprop="datePublished">2016-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mac中如何卸载pkg包
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、问题背景"><a href="#一、问题背景" class="headerlink" title="一、问题背景"></a>一、问题背景</h2><p>在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。</p>
+<p>Mac OS X 10.9.2</p>
+<h2 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h2><p>###1、打开“应用程序”-&gt;“实用工具(Utilities)”-&gt;“终端(Terminal)”。</p>
+<p>###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。</p>
+<p>com.apple.pkg.IncompatibleKextConfigData.3-15<br>com.apple.pkg.iPhoto_AppStore<br>com.apple.pkg.iTunesAccess<br>com.apple.pkg.iTunesX<br>com.apple.pkg.iTunesXPatch<br>com.apple.pkg.JavaEssentials<br>com.apple.pkg.JavaForMacOSX107<br>com.apple.pkg.JavaMDNS<br>com.apple.pkg.JavaSecurity<br>com.apple.pkg.JavaTools<br>com.apple.pkg.Keynote6<br>如图，我们安装了JavaForMacOSX107，假设我们想卸载，那么继续以下步骤。</p>
+<p>###3、使用”cd /private/var/db/receipts”，”ls”命令，列出所有的<em>.bom和</em>.plist文件。</p>
+<p>com.apple.pkg.JavaEssentials.bom<br>com.apple.pkg.JavaEssentials.plist<br>com.apple.pkg.JavaForMacOSX107.bom<br>com.apple.pkg.JavaForMacOSX107.plist<br>com.apple.pkg.JavaMDNS.bom<br>com.apple.pkg.JavaMDNS.plist<br>com.apple.pkg.JavaSecurity.bom<br>com.apple.pkg.JavaSecurity.plist<br>com.apple.pkg.JavaTools.bom<br>com.apple.pkg.JavaTools.plist<br>com.apple.pkg.Keynote6.bom<br>如图，com.apple.pkg.JavaForMacOSX107.bom记录了这个包所有的关联文件。</p>
+<p>###4、使用”lsbom com.apple.pkg.JavaForMacOSX107.bom”，查看所有关联文件。</p>
+<p>.    40755    0/0<br>./System    40755    0/0<br>./System/Library    40755    0/0<br>./System/Library/Java    40755    0/0<br>./System/Library/Java/JavaVirtualMachines    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-rt.jar100644    0/0    123448    2146194501<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-string.jar    100644    0/0    42031    862452543<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar    100644    0/0    3515769    438110220<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.ja100644    0/0    31193251    1347176735<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/dt.jar    120755    0/0    18    3676296750    ../Home/lib/dt.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar    120755    0/0    19    925190531    ../Home/lib/jce.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jconsole.jar    120755    0/0    24    3933942479    ../Home/lib/jconsole.jar<br>如图，此包的文件主要在/System/Library/Java/JavaVirtualMachines/1.6.0.jdk文件夹中，只要删除此文件夹即可。</p>
+<p>###5、进入/System/Library/Java/JavaVirtualMachines文件夹，执行”sudo rm -r 1.6.0.jdk”命令。</p>
+<p>###6、整个pkg删除完成。</p>
+<h2 id="三、注意"><a href="#三、注意" class="headerlink" title="三、注意"></a>三、注意</h2><p>第5步，sudo需要输入管理员密码，此密码必须要设置。<br>在“系统偏好设置”-&gt;“用户与群组”中设置管理员密码。</p>
+<p>也可使用开源的统一卸载方式</p>
+<p><a href="https://github.com/mpapis/pkg_uninstaller" target="_blank" rel="external">https://github.com/mpapis/pkg_uninstaller</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qingsong-xu.github.io/2016/12/02/mac中如何卸载pkg包/" data-id="cj83s9qoa000cz6a8lgecmn2b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/16/gradle多渠道打包、配置签名信息/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          gradle多渠道打包、配置签名信息
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/01/让Go2Shell支持iTerm2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">让Go2Shell支持iTerm2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/28/Git命令清单/">Git命令清单</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/04/ReactNative框架的搭建-一/">ReactNative框架的搭建(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/03/ReactNative学习基础-一/">ReactNative学习基础(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/18/React学习第一天/">React学习第一天</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/23/xml第一天/">xml第一天</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 qingsong.xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
