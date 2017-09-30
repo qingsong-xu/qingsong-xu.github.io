@@ -71,14 +71,16 @@
 
 <meta name="description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java正则表达式中的是那种匹配模式">
-<meta property="og:url" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的是那种匹配模式/index.html">
+<meta property="og:title" content="Java正则表达式中的匹配模式">
+<meta property="og:url" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/index.html">
 <meta property="og:site_name" content="青松的blog">
 <meta property="og:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。">
-<meta property="og:updated_time" content="2017-09-30T01:37:05.000Z">
+<meta property="og:image" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png">
+<meta property="og:updated_time" content="2017-09-30T02:16:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java正则表达式中的是那种匹配模式">
+<meta name="twitter:title" content="Java正则表达式中的匹配模式">
 <meta name="twitter:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。">
+<meta name="twitter:image" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png">
 
 
 
@@ -108,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的是那种匹配模式/"/>
+  <link rel="canonical" href="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/"/>
 
 
 
 
 
-  <title>Java正则表达式中的是那种匹配模式 | 青松的blog</title>
+  <title>Java正则表达式中的匹配模式 | 青松的blog</title>
   
 
 
@@ -174,7 +176,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -184,7 +186,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -221,7 +223,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的是那种匹配模式/">
+    <link itemprop="mainEntityOfPage" href="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qingsong.xu">
@@ -238,7 +240,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java正则表达式中的是那种匹配模式</h1>
+          <h1 class="post-title" itemprop="name headline">Java正则表达式中的匹配模式</h1>
         
 
         <div class="post-meta">
@@ -248,7 +250,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-29T14:08:17Z">
                 2017-09-29
@@ -289,7 +291,7 @@
 
       
         <p>前言：最开始看的是这篇文章“<a href="http://blog.csdn.net/luoweifu/article/details/42759439" target="_blank" rel="external">Java正则表达中Greedy Reluctant Possessive 的区别</a>”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。</p>
-<p>从Java的<a href="http://docs.oracle.com/javase/tutorial/essential/regex/quant.html" target="_blank" rel="external">官方文档</a>中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。</p>
+<p>从Java的<a href="http://docs.oracle.com/javase/tutorial/essential/regex/quant.html" target="_blank" rel="external">官方文档</a>中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。<br><img src="/2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png" title="regex_quantifers"></p>
 
       
     </div>
@@ -390,7 +392,7 @@
               <a href="/archives/">
             
                 <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -401,7 +403,7 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
+                <span class="site-state-item-name">Kategorien</span>
               
             </div>
           
@@ -454,7 +456,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a></div>
 
   <span class="post-meta-divider">|</span>
 
