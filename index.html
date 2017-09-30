@@ -286,9 +286,34 @@ find text = xxxxxxxfoo   start index = 4  end index = 14
 <p><img src="http://img.blog.csdn.net/20150116002538812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="reluctant"></p>
 <p>这个应该也很容易理解，主要思想同greedy，只是首次读入是从头开始。</p>
 <p>最难理解的应该是独占模式吧（其实特别简单，哈哈）：</p>
-<p>Possessive（独占模式）同greedy一样一次性读入整个输入串，但是只尝试一次仅且一次，Possessive从不回退.(请参考greedy的图的第一次匹配，区别在于执行第一次匹配后不再进行第二次回退匹配，直接返回matcher.find结果)</p>
+<p>Possessive（独占模式）同greedy一样一次性读入整个输入串，但是只尝试一次仅且一次，Possessive从不回退.</p>
+<p><img src="/2017/09/29/Java正则表达式中的匹配模式/possessive.jpg" title="possessive"></p>
+<p>(参考greedy的图的第一次匹配，区别在于执行第一次匹配后不再进行第二次回退匹配，直接返回matcher.find结果)</p>
 <p>根据greedy要点推出，当第一次读取匹配时，读取在末尾，此时只符合.<em> ,并未匹配到foo,所以直接返回matcher.find()== false<br>模式串：.</em>+foo<br>查找串：xfooxxxxxxxfoo<br>结果：<br>      //未匹配成功</p>
 <p>到此，应该就明白了吧！</p>
+<p>简单总结一下：<br>贪婪性：能够使匹配成功的最大可能重复数<br>勉强性：匹配最小的重复次数<br>独占性：即使让整个匹配失败，也要匹配最大的重复数。</p>
+<p><strong>下面来个”独占模式”成功匹配的例子</strong></p>
+<p>目标匹配字段：adbcde<br>匹配模式：[a-z]*+<br>匹配结果，匹配成功，mactcher.find()==true,matcher.group()==””,匹配成功的开始位置为6，结束位置为6，刚好是目标匹配字符的长度</p>
+<pre><code>    public static void main(String[] args) {
+    String targetStr = &quot;ckab&quot;;
+    Pattern pattern = Pattern.compile(&quot;[a-z]*+&quot;);
+
+    Matcher matcher = pattern.matcher(targetStr);
+
+    while (matcher.find()) {
+        System.out.println(matcher.find());
+        System.out.println(&quot;find text = &quot;
+            + matcher.group()
+            + &quot;   start index = &quot;
+            + matcher.start()
+            + &quot;  end index = &quot;
+            + matcher.end());
+    }
+}
+</code></pre><p> 结果输出：</p>
+<pre><code>true
+find text =    start index = 6  end index = 6
+</code></pre><p> 个人觉得独占模式的使用率不高，因为太严格了，严格到没出路！！！</p>
 
       
       

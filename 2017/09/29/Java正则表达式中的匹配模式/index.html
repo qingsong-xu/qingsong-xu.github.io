@@ -14,7 +14,8 @@
 <meta property="og:image" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png">
 <meta property="og:image" content="http://img.blog.csdn.net/20150116002457806?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20150116002538812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2017-09-30T03:58:32.000Z">
+<meta property="og:image" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/possessive.jpg">
+<meta property="og:updated_time" content="2017-09-30T07:14:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java正则表达式中的匹配模式">
 <meta name="twitter:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 通过官方文档对比我们可以看">
@@ -296,9 +297,34 @@ find text = xxxxxxxfoo   start index = 4  end index = 14
 <p><img src="http://img.blog.csdn.net/20150116002538812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="reluctant"></p>
 <p>这个应该也很容易理解，主要思想同greedy，只是首次读入是从头开始。</p>
 <p>最难理解的应该是独占模式吧（其实特别简单，哈哈）：</p>
-<p>Possessive（独占模式）同greedy一样一次性读入整个输入串，但是只尝试一次仅且一次，Possessive从不回退.(请参考greedy的图的第一次匹配，区别在于执行第一次匹配后不再进行第二次回退匹配，直接返回matcher.find结果)</p>
+<p>Possessive（独占模式）同greedy一样一次性读入整个输入串，但是只尝试一次仅且一次，Possessive从不回退.</p>
+<p><img src="/2017/09/29/Java正则表达式中的匹配模式/possessive.jpg" title="possessive"></p>
+<p>(参考greedy的图的第一次匹配，区别在于执行第一次匹配后不再进行第二次回退匹配，直接返回matcher.find结果)</p>
 <p>根据greedy要点推出，当第一次读取匹配时，读取在末尾，此时只符合.<em> ,并未匹配到foo,所以直接返回matcher.find()== false<br>模式串：.</em>+foo<br>查找串：xfooxxxxxxxfoo<br>结果：<br>      //未匹配成功</p>
 <p>到此，应该就明白了吧！</p>
+<p>简单总结一下：<br>贪婪性：能够使匹配成功的最大可能重复数<br>勉强性：匹配最小的重复次数<br>独占性：即使让整个匹配失败，也要匹配最大的重复数。</p>
+<p><strong>下面来个”独占模式”成功匹配的例子</strong></p>
+<p>目标匹配字段：adbcde<br>匹配模式：[a-z]*+<br>匹配结果，匹配成功，mactcher.find()==true,matcher.group()==””,匹配成功的开始位置为6，结束位置为6，刚好是目标匹配字符的长度</p>
+<pre><code>    public static void main(String[] args) {
+    String targetStr = &quot;ckab&quot;;
+    Pattern pattern = Pattern.compile(&quot;[a-z]*+&quot;);
+
+    Matcher matcher = pattern.matcher(targetStr);
+
+    while (matcher.find()) {
+        System.out.println(matcher.find());
+        System.out.println(&quot;find text = &quot;
+            + matcher.group()
+            + &quot;   start index = &quot;
+            + matcher.start()
+            + &quot;  end index = &quot;
+            + matcher.end());
+    }
+}
+</code></pre><p> 结果输出：</p>
+<pre><code>true
+find text =    start index = 6  end index = 6
+</code></pre><p> 个人觉得独占模式的使用率不高，因为太严格了，严格到没出路！！！</p>
 
       
       
@@ -311,7 +337,7 @@ find text = xxxxxxxfoo   start index = 4  end index = 14
   <p><span>本文标题:</span><a href="/2017/09/29/Java正则表达式中的匹配模式/">Java正则表达式中的匹配模式</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 qingsong.xu 的个人博客">qingsong.xu</a></p>
   <p><span>发布时间:</span>2017年9月29日 - 14时09分</p>
-  <p><span>最后更新:</span>2017年9月30日 - 11时09分</p>
+  <p><span>最后更新:</span>2017年9月30日 - 15时09分</p>
   <p>
     <span>原始链接:</span><a href="/2017/09/29/Java正则表达式中的匹配模式/" title="Java正则表达式中的匹配模式">http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/</a>
     <span class="btn" data-clipboard-text="原文: http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/　　作者: qingsong.xu" title="点击复制文章链接">
