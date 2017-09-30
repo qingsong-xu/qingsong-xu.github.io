@@ -12,7 +12,9 @@
 <meta property="og:site_name" content="青松的blog">
 <meta property="og:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 通过官方文档对比我们可以看">
 <meta property="og:image" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png">
-<meta property="og:updated_time" content="2017-09-30T02:49:13.000Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20150116002457806?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150116002538812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-09-30T03:58:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java正则表达式中的匹配模式">
 <meta name="twitter:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 通过官方文档对比我们可以看">
@@ -230,7 +232,73 @@
       
         <p>前言：最开始看的是这篇文章“<a href="http://blog.csdn.net/luoweifu/article/details/42759439" target="_blank" rel="external">Java正则表达中Greedy Reluctant Possessive 的区别</a>”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。</p>
 <p>从Java的<a href="http://docs.oracle.com/javase/tutorial/essential/regex/quant.html" target="_blank" rel="external">官方文档</a>中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。<br><img src="/2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png" title="regex_quantifers"></p>
-<p>通过官方文档对比我们可以看出规律：<br>在带有限定符号:？、*、+、{n}、{n,}、{n,m}的字符后，贪婪模式是多增加了个“?”限定符，</p>
+<p>通过官方文档对比我们可以看出规律：<br>贪婪模式即在X字符后面增加限定符号如：？、*、+、{n}、{n,}、{n,m}</p>
+<p>懒惰模式是在带有限定符号:？、*、+、{n}、{n,}、{n,m}的后面，增加”?”，如：X??</p>
+<p>独占模式也叫侵占模式，是在带有限定符号:？、*、+、{n}、{n,}、{n,m}的后面，增加”+”，如：X?+</p>
+<p><strong>用代码说话</strong></p>
+<p>1、Greedy 贪婪模式</p>
+<pre><code>public static void main(String[] args) {
+    String targetStr = &quot;xfooxxxxxxxfoo&quot;;
+    Pattern pattern = Pattern.compile(&quot;.*foo&quot;);
+    Matcher matcher = pattern.matcher(targetStr);
+
+    while (matcher.find()) {
+        System.out.println(&quot;find text = &quot;
+            + matcher.group()
+            + &quot;   start index = &quot;
+            + matcher.start()
+            + &quot;  end index = &quot;
+            + matcher.end());
+    }
+}
+</code></pre><p>  输出结果：</p>
+<pre><code>find text = xfooxxxxxxxfoo   start index = 0  end index = 14
+</code></pre><p> 2、Reluctant 懒惰模式</p>
+<pre><code> public static void main(String[] args) {
+    String targetStr = &quot;xfooxxxxxxxfoo&quot;;
+    Pattern pattern = Pattern.compile(&quot;.*?foo&quot;);
+
+    Matcher matcher = pattern.matcher(targetStr);
+
+    while (matcher.find()) {
+        System.out.println(&quot;find text = &quot;
+            + matcher.group()
+            + &quot;   start index = &quot;
+            + matcher.start()
+            + &quot;  end index = &quot;
+            + matcher.end());
+    }
+}
+</code></pre><p>   输出结果：</p>
+<pre><code>   find text = xfoo   start index = 0  end index = 4
+find text = xxxxxxxfoo   start index = 4  end index = 14
+</code></pre><p>3、Possessive 独占模式</p>
+<pre><code>public static void main(String[] args) {
+    String targetStr = &quot;xfooxxxxxxxfoo&quot;;
+    Pattern pattern = Pattern.compile(&quot;.*+foo&quot;);
+
+    Matcher matcher = pattern.matcher(targetStr);
+
+    while (matcher.find()) {
+        System.out.println(&quot;find text = &quot;
+            + matcher.group()
+            + &quot;   start index = &quot;
+            + matcher.start()
+            + &quot;  end index = &quot;
+            + matcher.end());
+    }
+}
+</code></pre><p>   输出结果为空白,即matcher.find()返回false,未匹配成功.</p>
+<p>   下面说说原理：</p>
+<p>   Greedy“贪婪模式”是因为匹配器被强制要求第一次尝试匹配时就读入整个输入串，如果第一次尝试匹配失败，则从后往前逐个字符地回退并尝试再次匹配，直到匹配成功或没有字符可回退。<br>   模式串：.*foo<br>   查找串：xfooxxxxxxxfoo<br>   结果：find text = xfooxxxxxxxfoo   start index = 0  end index = 14<br>   <img src="http://img.blog.csdn.net/20150116002457806?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="greedy"></p>
+<p>   要点：一次性读入整个输入串，第一次匹配整个字符串时，符合 .* ,此时到达末尾，回退1个字符，继续进行第二次匹配，依次类推，直到回退到 foo时，匹配成功，此时 match.find()==true,输出结果</p>
+<p>   Reluctant采用与Greedy相反的方法，它从输入串的首字符位置开始，在一次尝试匹配查找中只勉强地读一个字符，直到尝试完整个字符串。<br>模式串：.*?foo<br>查找串：xfooxxxxxxxfoo<br>结果： find text = xfoo   start index = 0  end index = 4<br>       find text = xxxxxxxfoo   start index = 4  end index = 14</p>
+<p><img src="http://img.blog.csdn.net/20150116002538812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="reluctant"></p>
+<p>这个应该也很容易理解，主要思想同greedy，只是首次读入是从头开始。</p>
+<p>最难理解的应该是独占模式吧（其实特别简单，哈哈）：</p>
+<p>Possessive（独占模式）同greedy一样一次性读入整个输入串，但是只尝试一次仅且一次，Possessive从不回退.(请参考greedy的图的第一次匹配，区别在于执行第一次匹配后不再进行第二次回退匹配，直接返回matcher.find结果)</p>
+<p>根据greedy要点推出，当第一次读取匹配时，读取在末尾，此时只符合.<em> ,并未匹配到foo,所以直接返回matcher.find()== false<br>模式串：.</em>+foo<br>查找串：xfooxxxxxxxfoo<br>结果：<br>      //未匹配成功</p>
+<p>到此，应该就明白了吧！</p>
 
       
       
@@ -243,7 +311,7 @@
   <p><span>本文标题:</span><a href="/2017/09/29/Java正则表达式中的匹配模式/">Java正则表达式中的匹配模式</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 qingsong.xu 的个人博客">qingsong.xu</a></p>
   <p><span>发布时间:</span>2017年9月29日 - 14时09分</p>
-  <p><span>最后更新:</span>2017年9月30日 - 10时09分</p>
+  <p><span>最后更新:</span>2017年9月30日 - 11时09分</p>
   <p>
     <span>原始链接:</span><a href="/2017/09/29/Java正则表达式中的匹配模式/" title="Java正则表达式中的匹配模式">http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/</a>
     <span class="btn" data-clipboard-text="原文: http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/　　作者: qingsong.xu" title="点击复制文章链接">
