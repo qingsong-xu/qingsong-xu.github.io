@@ -174,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -207,6 +207,172 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qingsong-xu.github.io/2016/03/20/zsh-强大shell的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qingsong.xu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="青松的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/03/20/zsh-强大shell的使用/" itemprop="url">zsh-强大shell的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-19T19:42:52Z">
+                2016-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>闲来无事，就想折腾折腾我的mac，哈哈</p>
+<p>###（1）iTerm2 是 OS X 下一款开源免费的的终端工具，我基本用它替代了原生的 Terminal。网址：<a href="http://www.iterm2.com" target="_blank" rel="external">http://www.iterm2.com</a></p>
+<p>###（2）有了优秀的终端，我们终于可以使用 Shell 了。不过，万里长征才开始了第一步，Shell 也是分门派的，我推荐给大家的是：<a href="http://macshuo.com/?p=676" target="_blank" rel="external">终极 Shell——ZSH</a>。</p>
+<blockquote>
+<p>安装好iTerm2后，使用时会发现没有“命令自定义别名”功能，在网上搜了下，配合使用zsh这个shell，就可以实现。<br>所以，我安装了zsh.<br>在默认终端里执行：</p>
+</blockquote>
+<pre><code>cat /etc/shells
+</code></pre><p>即可以发现目前你mac环境里的shell命令种类。没安装zsh的话,请看shell-zsh连接进行安装。<br>我的默认已经安装了：</p>
+<pre><code>cat /etc/shells
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</code></pre><p>很明显最后一个就是我说zsh终极shell。<br>查看所以文件时会发现有一个.zshrc文件，使用vim命令查看这个文件内容，在最后配置命令别名：</p>
+<pre><code>alias ll=&quot;ls -l&quot;
+alias la=&quot;ls -a&quot;
+</code></pre><p>退出保存此文件，然后使用“ll”你会发现命令没有用。<br><strong>原因在于你设置的默认shell并不是zsh这个shell,所以只要更改默认shell就可以了，如下：</strong></p>
+<pre><code>chsh -s /bin/zsh
+</code></pre><p>相关资料可看<a href="http://blog.longwin.com.tw/2011/10/macosx-shell-zsh-2011/" target="_blank" rel="external">MacOSX shell 改用 zsh</a><br>关于主题的更改，可以看<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">Themes · robbyrussell/oh-my-zsh Wiki · GitHub</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -250,7 +416,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-12T09:26:21Z">
                 2016-01-12
@@ -371,7 +537,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-01-10T14:43:56Z">
                 2016-01-10
@@ -546,7 +712,7 @@ Note: You start each level with a new repo. Don&apos;t look for files from the p
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-02T19:41:01Z">
                 2015-11-02
@@ -772,7 +938,7 @@ theme: tommy #这个名字要对应themes目录下要被应用的主题文件夹
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-10-31T07:38:43Z">
                 2015-10-31
@@ -907,8 +1073,8 @@ theme: tommy #这个名字要对应themes目录下要被应用的主题文件夹
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -919,7 +1085,7 @@ theme: tommy #这个名字要对应themes目录下要被应用的主题文件夹
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -972,7 +1138,7 @@ theme: tommy #这个名字要对应themes目录下要被应用的主题文件夹
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io">Hexo</a></div>
 
   <span class="post-meta-divider">|</span>
 
