@@ -69,16 +69,16 @@
 
 
 
-<meta name="description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。&amp;lt;% img /201">
+<meta name="description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 &amp;lt;% img /20">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java正则表达式中的匹配模式">
 <meta property="og:url" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/index.html">
 <meta property="og:site_name" content="青松的blog">
-<meta property="og:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。&amp;lt;% img /201">
-<meta property="og:updated_time" content="2017-09-30T02:35:34.000Z">
+<meta property="og:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 &amp;lt;% img /20">
+<meta property="og:updated_time" content="2017-09-30T02:38:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java正则表达式中的匹配模式">
-<meta name="twitter:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。&amp;lt;% img /201">
+<meta name="twitter:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 &amp;lt;% img /20">
 
 
 
@@ -289,8 +289,9 @@
 
       
         <p>前言：最开始看的是这篇文章“<a href="http://blog.csdn.net/luoweifu/article/details/42759439" target="_blank" rel="external">Java正则表达中Greedy Reluctant Possessive 的区别</a>”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。</p>
-<p>从Java的<a href="http://docs.oracle.com/javase/tutorial/essential/regex/quant.html" target="_blank" rel="external">官方文档</a>中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。<br>&lt;% img /2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png regex_quantifers %&gt;</p>
-<p>通过官方文档对比我们可以看出规律：<br>在带有限定符号:？、*、+、{n}、{n,}、{n,m}的字符后，贪婪模式是多增加了个“?”限定符，</p>
+<p>从Java的<a href="http://docs.oracle.com/javase/tutorial/essential/regex/quant.html" target="_blank" rel="external">官方文档</a>中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。</p>
+<pre><code>&lt;% img /2017/09/29/Java正则表达式中的匹配模式/regex_quantifers.png regex_quantifers %&gt;
+</code></pre><p>通过官方文档对比我们可以看出规律：<br>在带有限定符号:？、*、+、{n}、{n,}、{n,m}的字符后，贪婪模式是多增加了个“?”限定符，</p>
 
       
     </div>
