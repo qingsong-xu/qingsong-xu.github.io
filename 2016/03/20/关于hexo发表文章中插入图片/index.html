@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://qingsong-xu.github.io/2016/03/20/关于hexo发表文章中插入图片/index.html">
 <meta property="og:site_name" content="青松的blog">
 <meta property="og:description" content="发表嵌有图片的文章，图片path应该怎么写###Hexo的文章资源文件夹对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性： post_">
-<meta property="og:updated_time" content="2016-03-19T16:44:12.000Z">
+<meta property="og:updated_time" content="2017-09-30T03:00:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于hexo发表文章中插入图片">
 <meta name="twitter:description" content="发表嵌有图片的文章，图片path应该怎么写###Hexo的文章资源文件夹对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性： post_">
@@ -231,13 +231,14 @@
 </code></pre><p>当资源文件管理功能打开后，Hexo将会在你每一次通过 “hexo new [layout] \<title>”命令创建新文章时自动创建一个文件夹。这个资源文件夹将会有与这个 markdown 文件一样的名字。将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。</title></p>
 <p><strong>为什么要这样做呢？</strong><br>因为采用Markdown的语法来发表嵌入图片的文章，会发现md文件里展示没问题，但是生成的网页是不成功的。<br>查了资料发现，要使用<a href="https://hexo.io/zh-cn/docs/tag-plugins.html" target="_blank" rel="external">标签插件</a>来实现“嵌入图片”。<br>图片标签为：</p>
 <figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;/path/to/image&quot; class=&quot;[class names]&quot; title=&quot;[width] [height] [title text [alt text]]&quot;&gt;</div></pre></td></tr></table></figure>
-<p><strong>个人例子：</strong><br>设置好属性后，会发现_post文件下会自动创建同名的文件夹，图片资源文件就放在这里。之后使用</p>
+<p>这样嵌入图片，返回发表，是不能正常显示的</p>
+<p><strong>个人例子：</strong><br>在根目录下的_config.xml文件中设置好属性post_asset_folder: true后，使用“hexo new [layout] \<title>”命令新建博客页，会发现在_post文件下会自动创建和新博客页同名的文件夹，图片资源文件就放在这这个文件夹中。然后使用</title></p>
 <pre><code>hexo generate -deploy
-</code></pre><p>就可以发表了。<br>发表后会在“hexo”文件下与“source”文件夹同级的发表文件“public”文件夹下有对应发表文章。如我的：</p>
+</code></pre><p>就发表博客。<br>发表后会在“hexo”文件下与“source”文件夹同级的发表文件“public”文件夹下有对应发表文章的index.html主页。如我的文章index.html位置是：2016/03/19/iterm2半透明窗口/index.html，若采用markdown语法嵌入图片，应该是</p>
 <pre><code>{% img /2016/03/20/关于hexo发表文章中插入图片/hexo_generate.jpg hexo_generate %}
-</code></pre><p>生成的index.html位置是：2016/03/19/iterm2半透明窗口/index.html，而图片资源文件发布时是在index.html的同级目录下，所以标签应该写成：</p>
-<figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;/2016/03/19/iterm2半透明窗口/hotkey.jpg&quot; title=&quot;hotkey&quot;&gt;</div></pre></td></tr></table></figure>
-<p>这样就ok了。</p>
+</code></pre><p>，然而这样写在访问自己的服务器主页时，并不能正常显示图片，所以标签应该写成：</p>
+<pre><code>&lt;img src=&quot;/2016/03/19/iterm2半透明窗口/hotkey.jpg&quot; title=&quot;hotkey&quot;&gt;
+</code></pre><p>这样就ok了。</p>
 
       
       
@@ -250,7 +251,7 @@
   <p><span>本文标题:</span><a href="/2016/03/20/关于hexo发表文章中插入图片/">关于hexo发表文章中插入图片</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 qingsong.xu 的个人博客">qingsong.xu</a></p>
   <p><span>发布时间:</span>2016年3月20日 - 00时03分</p>
-  <p><span>最后更新:</span>2016年3月20日 - 00时03分</p>
+  <p><span>最后更新:</span>2017年9月30日 - 11时09分</p>
   <p>
     <span>原始链接:</span><a href="/2016/03/20/关于hexo发表文章中插入图片/" title="关于hexo发表文章中插入图片">http://qingsong-xu.github.io/2016/03/20/关于hexo发表文章中插入图片/</a>
     <span class="btn" data-clipboard-text="原文: http://qingsong-xu.github.io/2016/03/20/关于hexo发表文章中插入图片/　　作者: qingsong.xu" title="点击复制文章链接">
