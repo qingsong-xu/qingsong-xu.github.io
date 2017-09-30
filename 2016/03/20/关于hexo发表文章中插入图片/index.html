@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://qingsong-xu.github.io/2016/03/20/关于hexo发表文章中插入图片/index.html">
 <meta property="og:site_name" content="青松的blog">
 <meta property="og:description" content="发表嵌有图片的文章，图片path应该怎么写###Hexo的文章资源文件夹对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性： post_">
-<meta property="og:updated_time" content="2017-09-30T03:00:52.000Z">
+<meta property="og:updated_time" content="2017-09-30T03:06:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于hexo发表文章中插入图片">
 <meta name="twitter:description" content="发表嵌有图片的文章，图片path应该怎么写###Hexo的文章资源文件夹对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性： post_">
@@ -239,6 +239,11 @@
 </code></pre><p>，然而这样写在访问自己的服务器主页时，并不能正常显示图片，所以标签应该写成：</p>
 <pre><code>&lt;img src=&quot;/2016/03/19/iterm2半透明窗口/hotkey.jpg&quot; title=&quot;hotkey&quot;&gt;
 </code></pre><p>这样就ok了。</p>
+<p>当然，也有其他方法，比如在简书上发布文章，图片上传后会得到图片链接地址，把地址复制过来就可以了<br>采用写法 </p>
+<pre><code>![title.png/jpg] (url链接)
+</code></pre><p> 例如：</p>
+<pre><code>![git_construct.png](http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+</code></pre><p>就正常显示了</p>
 
       
       
