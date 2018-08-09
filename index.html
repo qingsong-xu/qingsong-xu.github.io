@@ -194,6 +194,310 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Android内存泄漏、内存溢出及处理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/09/Android内存泄漏、内存溢出及处理/" class="article-date">
+  	<time datetime="2017-12-09T12:07:06.000Z" itemprop="datePublished">2017-12-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/09/Android内存泄漏、内存溢出及处理/">Android内存泄漏、内存溢出及处理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JAVA是垃圾回收语言的一种，开发者无需特意管理内存分配。但是JAVA中还是存在着许多内存泄露的可能性，如果不好好处理内存泄露，会导致APP内存单元无法释放被浪费掉，最终导致内存全部占据堆栈(heap)挤爆进而程序崩溃。</p>
+<p>内存泄露</p>
+<p>说到内存泄露，就不得不提到内存溢出，这两个比较容易混淆的概念，我们来分析一下。</p>
+<p>内存泄露：程序在向系统申请分配内存空间后(new)，在使用完毕后未释放。结果导致一直占据该内存单元，我们和程序都无法再使用该内存单元，直到程序结束，这是内存泄露。</p>
+<p>内存溢出：程序向系统申请的内存空间超出了系统能给的。比如内存只能分配一个int类型，我却要塞给他一个long类型，系统就出现oom。又比如一车最多能坐5个人，你却非要塞下10个，车就挤爆了。</p>
+<p>大量的内存泄露会导致内存溢出(oom)。</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-6-0设备获取mac地址问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/30/6-0设备获取mac地址问题/" class="article-date">
+  	<time datetime="2017-11-30T14:28:01.000Z" itemprop="datePublished">2017-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/30/6-0设备获取mac地址问题/">6.0设备获取mac地址问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>众所周知，Android 6.0系统，做出许多重大的变化，例如获取获取蓝牙MAC地址，如果使用‘BluetoothAdapter.getAddress()’将返回的是02:00:00:00:00:00 常量，不是真实的蓝牙MAC地址。<br>     看看官方是怎么描述的。为了给用户更多的数据保护，从这个版本开始， Android 移除了通过 WiFi 和蓝牙 API 来在应用程序中可编程的访问本地硬件标示符。现在 WifiInfo.getMacAddress() 和 BluetoothAdapter.getAddress() 方法都将返回 02:00:00:00:00:00 。<br>注意：在一个运行 Android 6.0 (API 级别 23) 的设备初始化后台的 WiFi 或蓝牙扫描时，操作对于外部设备是可见的，且被赋予一个随机的 MAC 地址。<br>     但是，我们在实际开发中，依旧需要使用 MAC地址，那没有一种‘万能’方法，不管是在6.0，还是在低版本都可以获取到 MAC地址呢？答案是有的！下面就介绍一种解决方法。这种方法获取的WLAN MAC地址。<br>具体代码如下：<br>[java] view plain copy<br>/** </p>
+<ul>
+<li>获取Mac地址<br>*/<br>public class MacUtils {  </li>
+</ul>
+<pre><code>/** 
+ * 获取手机的MAC地址 
+ *  
+ * @return 
+ */  
+public static String getMac() {  
+    String str = &quot;&quot;;  
+    String macSerial = &quot;&quot;;  
+    try {  
+        Process pp = Runtime.getRuntime().exec(  
+                &quot;cat /sys/class/net/wlan0/address &quot;);  
+        InputStreamReader ir = new InputStreamReader(pp.getInputStream());  
+        LineNumberReader input = new LineNumberReader(ir);  
+
+        for (; null != str;) {  
+            str = input.readLine();  
+            if (str != null) {  
+                macSerial = str.trim();// 去空格  
+                break;  
+            }  
+        }  
+    } catch (Exception ex) {  
+        ex.printStackTrace();  
+    }  
+    if (macSerial == null || &quot;&quot;.equals(macSerial)) {  
+        try {  
+            return loadFileAsString(&quot;/sys/class/net/eth0/address&quot;)  
+                    .toUpperCase().substring(0, 17);  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+
+        }  
+
+    }  
+    return macSerial;  
+}  
+
+public static String loadFileAsString(String fileName) throws Exception {  
+    FileReader reader = new FileReader(fileName);  
+    String text = loadReaderAsString(reader);  
+    reader.close();  
+    return text;  
+}  
+
+public static String loadReaderAsString(Reader reader) throws Exception {  
+    StringBuilder builder = new StringBuilder();  
+    char[] buffer = new char[4096];  
+    int readLength = reader.read(buffer);  
+    while (readLength &gt;= 0) {  
+        builder.append(buffer, 0, readLength);  
+        readLength = reader.read(buffer);  
+    }  
+    return builder.toString();  
+}     
+</code></pre><p>}  </p>
+<p>经测试，该代码在6.0和4.x版本上都可以获取到真实的MAC地址。<br>PS：在6.0上需要AndroidManifest.xml在加入以下2个权限，<br>[java] view plain copy<br><!--android6.0权限模型--><br>  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"><br>  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION">  </uses-permission></uses-permission></p>
+<p>String macAddress = android.provider.Settings.Secure.getString(context.getContentResolver(), “bluetooth_address”);<br>即可解决，获取的是蓝牙的地址。</p>
+<p>public static String getBluetoothAddress(Context context) {<br>        String macAddress = null;<br>        if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {<br>            macAddress = android.provider.Settings.Secure.getString(context.getContentResolver(),<br>                “bluetooth_address”);<br>        } else {<br>            BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();<br>            if (bluetooth != null) {<br>                String address = bluetooth.isEnabled() ? bluetooth.getAddress() : null;<br>                if (!TextUtils.isEmpty(address)) {<br>                    // Convert the address to lowercase for consistency with the wifi MAC address.<br>                    return address.toLowerCase();<br>                } else {<br>                    return context.getString(R.string.status_unavailable);<br>                }<br>            }<br>        }<br>        return macAddress;<br>    }</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-如何实现DialogActivity样式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/23/如何实现DialogActivity样式/" class="article-date">
+  	<time datetime="2017-11-22T21:42:09.000Z" itemprop="datePublished">2017-11-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/23/如何实现DialogActivity样式/">如何实现DialogActivity样式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x61;&#99;&#x74;&#x69;&#x76;&#105;&#x74;&#121;&#10;&#97;&#x6e;&#x64;&#114;&#x6f;&#105;&#x64;&#x3a;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x2e;&#109;&#x65;&#103;&#118;&#x69;&#x69;&#46;&#76;&#x6f;&#97;&#100;&#105;&#x6e;&#x67;&#65;&#99;&#x74;&#x69;&#118;&#x69;&#116;&#121;&#34;&#xa;&#x61;&#110;&#x64;&#114;&#111;&#x69;&#100;&#x3a;&#115;&#99;&#114;&#101;&#x65;&#x6e;&#79;&#114;&#105;&#101;&#110;&#116;&#97;&#116;&#x69;&#x6f;&#110;&#x3d;&#34;&#x70;&#x6f;&#x72;&#x74;&#x72;&#97;&#105;&#116;&#34;&#10;&#x61;&#110;&#100;&#x72;&#111;&#x69;&#x64;&#x3a;&#x74;&#x68;&#x65;&#x6d;&#101;&#x3d;&#x22;&#x40;&#x73;&#x74;&#x79;&#108;&#101;&#x2f;&#x44;&#x69;&#x61;&#x6c;&#x6f;&#x67;&#x54;&#x72;&#97;&#x6e;&#115;&#112;&#x61;&#114;&#101;&#x6e;&#116;&#x53;&#x74;&#121;&#x6c;&#x65;&#34;&#47;">&#x61;&#99;&#x74;&#x69;&#x76;&#105;&#x74;&#121;&#10;&#97;&#x6e;&#x64;&#114;&#x6f;&#105;&#x64;&#x3a;&#x6e;&#x61;&#x6d;&#x65;&#x3d;&#x22;&#x2e;&#109;&#x65;&#103;&#118;&#x69;&#x69;&#46;&#76;&#x6f;&#97;&#100;&#105;&#x6e;&#x67;&#65;&#99;&#x74;&#x69;&#118;&#x69;&#116;&#121;&#34;&#xa;&#x61;&#110;&#x64;&#114;&#111;&#x69;&#100;&#x3a;&#115;&#99;&#114;&#101;&#x65;&#x6e;&#79;&#114;&#105;&#101;&#110;&#116;&#97;&#116;&#x69;&#x6f;&#110;&#x3d;&#34;&#x70;&#x6f;&#x72;&#x74;&#x72;&#97;&#105;&#116;&#34;&#10;&#x61;&#110;&#100;&#x72;&#111;&#x69;&#x64;&#x3a;&#x74;&#x68;&#x65;&#x6d;&#101;&#x3d;&#x22;&#x40;&#x73;&#x74;&#x79;&#108;&#101;&#x2f;&#x44;&#x69;&#x61;&#x6c;&#x6f;&#x67;&#x54;&#x72;&#97;&#x6e;&#115;&#112;&#x61;&#114;&#101;&#x6e;&#116;&#x53;&#x74;&#121;&#x6c;&#x65;&#34;&#47;</a>
+
+<style name="DialogTransparentStyle" parent="AppTheme">
+<!--设置dialog的背景-->
+<item name="android:windowBackground">@android:color/transparent</item>
+<!--设置Dialog的windowFrame框为无-->
+<item name="android:windowFrame">@null</item>
+<!--设置无标题-->
+<item name="android:windowNoTitle">true</item>
+<!--是否浮现在activity之上-->
+<item name="android:windowIsFloating">true</item>
+<!--是否半透明-->
+<item name="android:windowIsTranslucent">true</item>
+<!--设置窗口内容不覆盖-->
+<item name="android:windowContentOverlay">@null</item>
+<!--设置动画，在这里使用让它继承系统的Animation.Dialog-->
+<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+<!--背景是否模糊显示-->
+<item name="android:backgroundDimEnabled">true</item>
+</style>
+
+<p>activity中onCreate（）中创建一个自定义的progressDialog<br>@Override<br>public void onCreate(Bundle savedInstanceState) {<br>super.onCreate(savedInstanceState);<br>requestWindowFeature(Window.FEATURE_NO_TITLE);<br>setContentView(R.layout.loading_layout);</p>
+<p>init();<br>netWorkWarranty();<br>}</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android奇葩bug" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/11/Android奇葩bug/" class="article-date">
+  	<time datetime="2017-10-10T17:06:19.000Z" itemprop="datePublished">2017-10-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/11/Android奇葩bug/">Android奇葩bug</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>java.lang.RuntimeException: Unable to instantiate application com.ztph.mall.ZTPHApplication: java.lang.ClassNotFoundException: Didn’t find class “com.ztph.mall.ZTPHApplication” on path: DexPathList[[zip file “/data/app/com.ztph.mall-1/base.apk”],nativeLibraryDirectories=[/data/app/com.ztph.mall-1/lib/arm64, /data/app/com.ztph.mall-1/base.apk!/lib/arm64-v8a, /vendor/lib64, /system/lib64]]<br>at android.app.LoadedApk.makeApplication(LoadedApk.java:591)<br>at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4937)<br>at android.app.ActivityThread.access$1700(ActivityThread.java:180)<br>at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1555)<br>at android.os.Handler.dispatchMessage(Handler.java:111)<br>at android.os.Looper.loop(Looper.java:207)<br>at android.app.ActivityThread.main(ActivityThread.java:5791)<br>at java.lang.reflect.Method.invoke(Native Method)<br>at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)<br>at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:762)<br>Caused by: java.lang.ClassNotFoundException: Didn’t find class “com.ztph.mall.ZTPHApplication” on path: DexPathList[[zip file “/data/app/com.ztph.mall-1/base.apk”],nativeLibraryDirectories=[/data/app/com.ztph.mall-1/lib/arm64, /data/app/com.ztph.mall-1/base.apk!/lib/arm64-v8a, /vendor/lib64, /system/lib64]]<br>at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:56)<br>at java.lang.ClassLoader.loadClass(ClassLoader.java:511)<br>at java.lang.ClassLoader.loadClass(ClassLoader.java:469)<br>at android.app.Instrumentation.newApplication(Instrumentation.java:986)<br>at android.app.LoadedApk.makeApplication(LoadedApk.java:586)<br>at android.app.ActivityThread.handleBindApplication(ActivityThread.java:4937)<br>at android.app.ActivityThread.access$1700(ActivityThread.java:180)<br>at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1555)<br>at android.os.Handler.dispatchMessage(Handler.java:111)<br>at android.os.Looper.loop(Looper.java:207)<br>at android.app.ActivityThread.main(ActivityThread.java:5791)<br>at java.lang.reflect.Method.invoke(Native Method)<br>at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:901)<br>at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:762)<br>Suppressed: java.lang.ClassNotFoundException: com.ztph.mall.ZTPHApplication<br>at java.lang.Class.classForName(Native Method)<br>at java.lang.BootClassLoader.findClass(ClassLoader.java:781)<br>at java.lang.BootClassLoader.loadClass(ClassLoader.java:841)<br>at java.lang.ClassLoader.loadClass(ClassLoader.java:504)<br>… 12 more<br>Caused by: java.lang.NoClassDefFoundError: Class not found using the boot class loader; no stack trace available</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Java正则表达式中的匹配模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -295,7 +599,7 @@ find text = xxxxxxxfoo   start index = 4  end index = 14
 <p><strong>下面来个”独占模式”成功匹配的例子</strong></p>
 <p>目标匹配字段：adbcde<br>匹配模式：[a-z]*+<br>匹配结果，匹配成功，mactcher.find()==true,matcher.group()==””,匹配成功的开始位置为6，结束位置为6，刚好是目标匹配字符的长度</p>
 <pre><code>    public static void main(String[] args) {
-    String targetStr = &quot;ckab&quot;;
+    String targetStr = &quot;adbcde&quot;;
     Pattern pattern = Pattern.compile(&quot;[a-z]*+&quot;);
 
     Matcher matcher = pattern.matcher(targetStr);
@@ -963,267 +1267,6 @@ return (&lt;div&gt;&lt;/div);/** &lt;div&gt;外面就是return的&quot;()&quot;,
 
 
   
-    <article id="post-win7和ubuntu双系统出现grup-rescue问题" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/" class="article-date">
-  	<time datetime="2017-02-15T18:04:40.000Z" itemprop="datePublished">2017-02-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/">win7和ubuntu双系统出现grup rescue问题</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>grub rescue&gt; ls<br>(hd0) (hd0,msdos1) (hd0,msdos5) (hd0,msdos6) (hd1,msdos1) (hd0,msdos2) (hd0,msdos3) (hd1) ##我的硬盘是两块2T的，hd1上是win7 三个区，hd0上 装的是ubuntu和kubuntu<br>grub rescue&gt; ls (hd1)/<br>文件系统未知 ##此处应该是英文<br>grub rescue&gt; ls (hd0)/<br>文件系统是 ext2 ##鬼知道为什么是 ext2<br>grub rescue&gt; set root=(hd0,1) ## 也可以是set root=(hd0,msdos1) ,当然你的可能是 (hd0,6)<br>grub rescue&gt; set prefix=(hd0,1)/grub ##这里就是和网上查到的版本的区别，没有中间的/boot/<br>grub rescue&gt; insmod normal ##直接这样写就可以，写那些路径反而有可能会错，不要问我为什么，我叫不知道<br>grub rescue&gt; normal ##进入正常的 ubuntu启动菜单<br>选择进入恢复模式(recovery mode)，ubuntu 14.04的恢复模式在高级选项里面，如果您选择了您删掉的那个版本的，不好意思，上面步骤重来一遍<br>选择 grub Update grub bootloader ##应该是倒数第四项<br>选择 YES<br>选择 resume Resume normal boot<br>好吧，上面选择了倒数第四项，重启还是问题重现，所以，还是选择倒数第二项吧 ，root Drop to root shell prompt<br>然后输入<br>sudo update-grub<br>sudo grub-install /dev/sda</p>
-<p>双系统 window7和 ubuntu13.04 ，Ubuntu两个分区分别是 /和交换分区，没有/boot 分区 ubuntu13.04安装的时候就没有grub引导项，一直没用也就没管。后来室友在Windows 中把linux的分区给删了，导致开机grub rescue，按照网上教程 到最后一步输入 insmod /boot/grub/normal.mod 显示 not found…..是不是13.04的grub路径不对啊。。求大神！！！</p>
-<p>具体如下<br>error: no such partition<br>grub rescue&gt; ls (hd0,3)/boot/grub<br>./../unicode.pf2 x86_64-efi/ locale/ fonts/ grub.efi grubenv grub.cfg<br>grub rescue&gt; set root=(hd0,3)<br>grub rescue&gt; set prefix=(hd0,3)/boot/grub<br>grub rescue&gt; insmod /boot/grub/normal.mod<br>error: file ‘/boot/grub/normal.mod’ not found.</p>
-<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?p=3024640" target="_blank" rel="external">http://forum.ubuntu.org.cn/viewtopic.php?p=3024640</a><br><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=458174" target="_blank" rel="external">http://forum.ubuntu.org.cn/viewtopic.php?t=458174</a></p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-gradle多渠道打包、配置签名信息" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/01/16/gradle多渠道打包、配置签名信息/" class="article-date">
-  	<time datetime="2017-01-16T14:17:37.000Z" itemprop="datePublished">2017-01-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/16/gradle多渠道打包、配置签名信息/">gradle多渠道打包、配置签名信息</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>定制生成的apk文件名</p>
-<pre><code>applicationVariants.all { variant -&gt;
-         if (variant.buildType.name.equals(&apos;release&apos;)) {
-             variant.outputs.each { output -&gt;
-                 def outputFile = output.outputFile
-                 if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {
-                     def fileName = &quot;gradle4android_v${defaultConfig.versionName}_${releaseTime()}_${variant.flavorName}.apk&quot;
-                     output.outputFile = new File(outputFile.parent, fileName)
-                 }
-             }
-         }
-     }
-</code></pre><p>  Could not find method releaseTime() for arguments [] on com.android.build.gradle.internal.api.ApplicationVariantImpl_Decorated@50fe0eed.　<br>  为什么我抱这种错误：<br>releaseTime 是自定义这个我没有定义　　　　　　</p>
-<p>yyyyMMddHHmm打包时间戳方法：</p>
-<pre><code>def releaseTime() {
-      return new Date().format(&quot;yyyyMMddHHmm&quot;, TimeZone.getTimeZone(&quot;GMT+8&quot;))
-}
-</code></pre><p>添加到build.gradle文件中android{…} 方法体外</p>
-<p>打包方法：</p>
-<pre><code>applicationVariants.all { variant -&gt;
-    if (variant.buildType.name.equals(&apos;release&apos;)) {
-          variant.outputs.each { output -&gt;
-        def outputFile = output.outputFile
-            if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {
-                  def fileName = &quot;MinicashboxSdk_${releaseTime()}.apk&quot;
-              output.outputFile = new File(outputFile.parent, fileName)
-            }
-          }
-    }
-  }
-</code></pre>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mac中如何卸载pkg包" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/02/mac中如何卸载pkg包/" class="article-date">
-  	<time datetime="2016-12-02T15:34:57.000Z" itemprop="datePublished">2016-12-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/02/mac中如何卸载pkg包/">mac中如何卸载pkg包</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、问题背景"><a href="#一、问题背景" class="headerlink" title="一、问题背景"></a>一、问题背景</h2><p>在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。</p>
-<p>Mac OS X 10.9.2</p>
-<h2 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h2><p>###1、打开“应用程序”-&gt;“实用工具(Utilities)”-&gt;“终端(Terminal)”。</p>
-<p>###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。</p>
-<p>com.apple.pkg.IncompatibleKextConfigData.3-15<br>com.apple.pkg.iPhoto_AppStore<br>com.apple.pkg.iTunesAccess<br>com.apple.pkg.iTunesX<br>com.apple.pkg.iTunesXPatch<br>com.apple.pkg.JavaEssentials<br>com.apple.pkg.JavaForMacOSX107<br>com.apple.pkg.JavaMDNS<br>com.apple.pkg.JavaSecurity<br>com.apple.pkg.JavaTools<br>com.apple.pkg.Keynote6<br>如图，我们安装了JavaForMacOSX107，假设我们想卸载，那么继续以下步骤。</p>
-<p>###3、使用”cd /private/var/db/receipts”，”ls”命令，列出所有的<em>.bom和</em>.plist文件。</p>
-<p>com.apple.pkg.JavaEssentials.bom<br>com.apple.pkg.JavaEssentials.plist<br>com.apple.pkg.JavaForMacOSX107.bom<br>com.apple.pkg.JavaForMacOSX107.plist<br>com.apple.pkg.JavaMDNS.bom<br>com.apple.pkg.JavaMDNS.plist<br>com.apple.pkg.JavaSecurity.bom<br>com.apple.pkg.JavaSecurity.plist<br>com.apple.pkg.JavaTools.bom<br>com.apple.pkg.JavaTools.plist<br>com.apple.pkg.Keynote6.bom<br>如图，com.apple.pkg.JavaForMacOSX107.bom记录了这个包所有的关联文件。</p>
-<p>###4、使用”lsbom com.apple.pkg.JavaForMacOSX107.bom”，查看所有关联文件。</p>
-<p>.    40755    0/0<br>./System    40755    0/0<br>./System/Library    40755    0/0<br>./System/Library/Java    40755    0/0<br>./System/Library/Java/JavaVirtualMachines    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-rt.jar100644    0/0    123448    2146194501<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-string.jar    100644    0/0    42031    862452543<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar    100644    0/0    3515769    438110220<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.ja100644    0/0    31193251    1347176735<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/dt.jar    120755    0/0    18    3676296750    ../Home/lib/dt.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar    120755    0/0    19    925190531    ../Home/lib/jce.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jconsole.jar    120755    0/0    24    3933942479    ../Home/lib/jconsole.jar<br>如图，此包的文件主要在/System/Library/Java/JavaVirtualMachines/1.6.0.jdk文件夹中，只要删除此文件夹即可。</p>
-<p>###5、进入/System/Library/Java/JavaVirtualMachines文件夹，执行”sudo rm -r 1.6.0.jdk”命令。</p>
-<p>###6、整个pkg删除完成。</p>
-<h2 id="三、注意"><a href="#三、注意" class="headerlink" title="三、注意"></a>三、注意</h2><p>第5步，sudo需要输入管理员密码，此密码必须要设置。<br>在“系统偏好设置”-&gt;“用户与群组”中设置管理员密码。</p>
-<p>也可使用开源的统一卸载方式</p>
-<p><a href="https://github.com/mpapis/pkg_uninstaller" target="_blank" rel="external">https://github.com/mpapis/pkg_uninstaller</a></p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-让Go2Shell支持iTerm2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/01/让Go2Shell支持iTerm2/" class="article-date">
-  	<time datetime="2016-12-01T11:20:41.000Z" itemprop="datePublished">2016-12-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/01/让Go2Shell支持iTerm2/">让Go2Shell支持iTerm2</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="让Go2Shell支持iTerm2"><a href="#让Go2Shell支持iTerm2" class="headerlink" title="让Go2Shell支持iTerm2"></a>让Go2Shell支持iTerm2</h2><p>安装过后发现找不到Go2Shell的配置，Google后找到解决方案：在终端里敲如下命令即可：open -a Go2Shell –args config在打开的窗口中切换成iTerm2即可</p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1234,7 +1277,7 @@ return (&lt;div&gt;&lt;/div);/** &lt;div&gt;外面就是return的&quot;()&quot;,
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2017 qingsong.xu
+        &copy; 2018 qingsong.xu
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE

@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20150116002457806?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://img.blog.csdn.net/20150116002538812?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVvd2VpZnU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
 <meta property="og:image" content="http://qingsong-xu.github.io/2017/09/29/Java正则表达式中的匹配模式/possessive.jpg">
-<meta property="og:updated_time" content="2017-09-30T07:14:52.000Z">
+<meta property="og:updated_time" content="2017-09-30T07:16:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java正则表达式中的匹配模式">
 <meta name="twitter:description" content="前言：最开始看的是这篇文章“Java正则表达中Greedy Reluctant Possessive 的区别”来进行学习理解，但是发现这篇文章说得并不是很清楚，经过最终领悟，现在将自己的理解作为笔记分享出来。 从Java的官方文档中我们可以看到，正则表达式表示数量词的符号有三套，分别是Greedy(贪婪的)、Reluctant(勉强的)和Possessive(独占的)。 通过官方文档对比我们可以看">
@@ -306,7 +306,7 @@ find text = xxxxxxxfoo   start index = 4  end index = 14
 <p><strong>下面来个”独占模式”成功匹配的例子</strong></p>
 <p>目标匹配字段：adbcde<br>匹配模式：[a-z]*+<br>匹配结果，匹配成功，mactcher.find()==true,matcher.group()==””,匹配成功的开始位置为6，结束位置为6，刚好是目标匹配字符的长度</p>
 <pre><code>    public static void main(String[] args) {
-    String targetStr = &quot;ckab&quot;;
+    String targetStr = &quot;adbcde&quot;;
     Pattern pattern = Pattern.compile(&quot;[a-z]*+&quot;);
 
     Matcher matcher = pattern.matcher(targetStr);
@@ -364,6 +364,12 @@ find text =    start index = 6  end index = 6
 
 
 <nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2017/10/11/Android奇葩bug/">
+        Android奇葩bug
+      </a>
+    </div>
   
   
     <div id="article-nav-older" class="article-nav-title">
@@ -450,20 +456,22 @@ find text =    start index = 6  end index = 6
 
   
   
+    
     <div  class="post-nav-button">
-    <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+    <a href="/2017/10/11/Android奇葩bug/" title="上一篇: Android奇葩bug">
+    <i class="fa fa-angle-left"></i>
+    </a>
     <a href="/2017/09/28/Git命令清单/" title="下一篇: Git命令清单">
     <i class="fa fa-angle-right"></i>
     </a>
     </div>
   
-    
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2017 qingsong.xu
+        &copy; 2018 qingsong.xu
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE

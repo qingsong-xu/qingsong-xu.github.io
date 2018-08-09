@@ -194,6 +194,196 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="mac下sublime-Insight" class="article article-type-mac下sublime" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/30/Insight/" class="article-date">
+  	<time datetime="2016-06-30T10:05:25.000Z" itemprop="datePublished">2016-06-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/30/Insight/">Insight</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>环境换到了Mac，可是没有了Source Insight，查找了一下，解决思路如下：</p>
+<p>1、安装Sublime Text2，下面两步都是安装插件，很酷（我是新手）</p>
+<p>2、安装Package Controler</p>
+<p>3、安装CTags</p>
+<p>4、导入Android源码，使用CTgas建立索引，然后就很酷了，CMD+P查找.java文件  CMD+R查找方法</p>
+<p>噢了。</p>
+<p>安装Package Controler:<br>打开Sublime Text的Console,输入命令：</p>
+<pre><code>import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())
+</code></pre><p>回车完成命令输入。就会看到相应的下载运行。Package Controler命令安装，可参考官网：<a href="https://packagecontrol.io/installation#st2" target="_blank" rel="external">https://packagecontrol.io/installation#st2</a></p>
+<p>点击Preferences。如果安装成功了，Package Settings 、Package Control会出现在菜单里了。</p>
+<p>Mac OSX中配置CTags插件：<strong>安装配置ctags前请确保已安装Package Control插件管理器</strong><br>1、打开Sublime Text软件，在Preferences(设置)菜单中打开Package Control(插件管理器)<br>如图：</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-关于hexo发表文章中插入图片" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/关于hexo发表文章中插入图片/" class="article-date">
+  	<time datetime="2016-03-20T00:13:24.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/关于hexo发表文章中插入图片/">关于hexo发表文章中插入图片</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="发表嵌有图片的文章，图片path应该怎么写"><a href="#发表嵌有图片的文章，图片path应该怎么写" class="headerlink" title="发表嵌有图片的文章，图片path应该怎么写"></a>发表嵌有图片的文章，图片path应该怎么写</h2><p>###Hexo的文章资源文件夹<br>对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性：</p>
+<pre><code>post_asset_folder: true
+</code></pre><p>当资源文件管理功能打开后，Hexo将会在你每一次通过 “hexo new [layout] \<title>”命令创建新文章时自动创建一个文件夹。这个资源文件夹将会有与这个 markdown 文件一样的名字。将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。</title></p>
+<p><strong>为什么要这样做呢？</strong><br>因为采用Markdown的语法来发表嵌入图片的文章，会发现md文件里展示没问题，但是生成的网页是不成功的。<br>查了资料发现，要使用<a href="https://hexo.io/zh-cn/docs/tag-plugins.html" target="_blank" rel="external">标签插件</a>来实现“嵌入图片”。<br>图片标签为：</p>
+<figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;/path/to/image&quot; class=&quot;[class names]&quot; title=&quot;[width] [height] [title text [alt text]]&quot;&gt;</div></pre></td></tr></table></figure>
+<p>这样嵌入图片，返回发表，是不能正常显示的</p>
+<p><strong>个人例子：</strong><br>在根目录下的_config.xml文件中设置好属性post_asset_folder: true后，使用“hexo new [layout] \<title>”命令新建博客页，会发现在_post文件下会自动创建和新博客页同名的文件夹，图片资源文件就放在这这个文件夹中。然后使用</title></p>
+<pre><code>hexo generate -deploy
+</code></pre><p>就发表博客。<br>发表后会在“hexo”文件下与“source”文件夹同级的发表文件“public”文件夹下有对应发表文章的index.html主页。如我的文章index.html位置是：2016/03/19/iterm2半透明窗口/index.html，若采用markdown语法嵌入图片，应该是</p>
+<pre><code>{% img /2016/03/20/关于hexo发表文章中插入图片/hexo_generate.jpg hexo_generate %}
+</code></pre><p>，然而这样写在访问自己的服务器主页时，并不能正常显示图片，所以标签应该写成：</p>
+<pre><code>&lt;img src=&quot;/2016/03/19/iterm2半透明窗口/hotkey.jpg&quot; title=&quot;hotkey&quot;&gt;
+</code></pre><p>这样就ok了。</p>
+<p>当然，也有其他方法，比如在简书上发布文章，图片上传后会得到图片链接地址，把地址复制过来就可以了<br>采用写法 </p>
+<pre><code>![title.png/jpg] (url链接)
+</code></pre><p> 例如：</p>
+<pre><code>![git_construct.png](http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+</code></pre><p>就正常显示了</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-iterm2半透明窗口" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/iterm2半透明窗口/" class="article-date">
+  	<time datetime="2016-03-19T22:35:49.000Z" itemprop="datePublished">2016-03-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/iterm2半透明窗口/">iterm2半透明窗口</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##iterm2设置半透明效果，研究了许久，没想到此功能竟然是热键唤起时的效果</p>
+<p>如下图，设置好系统热线之后，将在正常的浏览器或者编辑器等窗口的上面，以半透明窗口形式直接调出iterm2 shell。<br><img src="/2016/03/19/iterm2半透明窗口/hotkey.jpg" title="hotkey"><br>按下同样的系统热键之后，将自动隐藏。这样非常有利于随时随地处理。</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-zsh-强大shell的使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -672,7 +862,7 @@ theme: tommy #这个名字要对应themes目录下要被应用的主题文件夹
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2017 qingsong.xu
+        &copy; 2018 qingsong.xu
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE

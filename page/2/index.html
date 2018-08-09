@@ -194,6 +194,267 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-win7和ubuntu双系统出现grup-rescue问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/" class="article-date">
+  	<time datetime="2017-02-15T18:04:40.000Z" itemprop="datePublished">2017-02-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/16/win7和ubuntu双系统出现grup-rescue问题/">win7和ubuntu双系统出现grup rescue问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>grub rescue&gt; ls<br>(hd0) (hd0,msdos1) (hd0,msdos5) (hd0,msdos6) (hd1,msdos1) (hd0,msdos2) (hd0,msdos3) (hd1) ##我的硬盘是两块2T的，hd1上是win7 三个区，hd0上 装的是ubuntu和kubuntu<br>grub rescue&gt; ls (hd1)/<br>文件系统未知 ##此处应该是英文<br>grub rescue&gt; ls (hd0)/<br>文件系统是 ext2 ##鬼知道为什么是 ext2<br>grub rescue&gt; set root=(hd0,1) ## 也可以是set root=(hd0,msdos1) ,当然你的可能是 (hd0,6)<br>grub rescue&gt; set prefix=(hd0,1)/grub ##这里就是和网上查到的版本的区别，没有中间的/boot/<br>grub rescue&gt; insmod normal ##直接这样写就可以，写那些路径反而有可能会错，不要问我为什么，我叫不知道<br>grub rescue&gt; normal ##进入正常的 ubuntu启动菜单<br>选择进入恢复模式(recovery mode)，ubuntu 14.04的恢复模式在高级选项里面，如果您选择了您删掉的那个版本的，不好意思，上面步骤重来一遍<br>选择 grub Update grub bootloader ##应该是倒数第四项<br>选择 YES<br>选择 resume Resume normal boot<br>好吧，上面选择了倒数第四项，重启还是问题重现，所以，还是选择倒数第二项吧 ，root Drop to root shell prompt<br>然后输入<br>sudo update-grub<br>sudo grub-install /dev/sda</p>
+<p>双系统 window7和 ubuntu13.04 ，Ubuntu两个分区分别是 /和交换分区，没有/boot 分区 ubuntu13.04安装的时候就没有grub引导项，一直没用也就没管。后来室友在Windows 中把linux的分区给删了，导致开机grub rescue，按照网上教程 到最后一步输入 insmod /boot/grub/normal.mod 显示 not found…..是不是13.04的grub路径不对啊。。求大神！！！</p>
+<p>具体如下<br>error: no such partition<br>grub rescue&gt; ls (hd0,3)/boot/grub<br>./../unicode.pf2 x86_64-efi/ locale/ fonts/ grub.efi grubenv grub.cfg<br>grub rescue&gt; set root=(hd0,3)<br>grub rescue&gt; set prefix=(hd0,3)/boot/grub<br>grub rescue&gt; insmod /boot/grub/normal.mod<br>error: file ‘/boot/grub/normal.mod’ not found.</p>
+<p><a href="http://forum.ubuntu.org.cn/viewtopic.php?p=3024640" target="_blank" rel="external">http://forum.ubuntu.org.cn/viewtopic.php?p=3024640</a><br><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=458174" target="_blank" rel="external">http://forum.ubuntu.org.cn/viewtopic.php?t=458174</a></p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-gradle多渠道打包、配置签名信息" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/16/gradle多渠道打包、配置签名信息/" class="article-date">
+  	<time datetime="2017-01-16T14:17:37.000Z" itemprop="datePublished">2017-01-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/16/gradle多渠道打包、配置签名信息/">gradle多渠道打包、配置签名信息</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>定制生成的apk文件名</p>
+<pre><code>applicationVariants.all { variant -&gt;
+         if (variant.buildType.name.equals(&apos;release&apos;)) {
+             variant.outputs.each { output -&gt;
+                 def outputFile = output.outputFile
+                 if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {
+                     def fileName = &quot;gradle4android_v${defaultConfig.versionName}_${releaseTime()}_${variant.flavorName}.apk&quot;
+                     output.outputFile = new File(outputFile.parent, fileName)
+                 }
+             }
+         }
+     }
+</code></pre><p>  Could not find method releaseTime() for arguments [] on com.android.build.gradle.internal.api.ApplicationVariantImpl_Decorated@50fe0eed.　<br>  为什么我抱这种错误：<br>releaseTime 是自定义这个我没有定义　　　　　　</p>
+<p>yyyyMMddHHmm打包时间戳方法：</p>
+<pre><code>def releaseTime() {
+      return new Date().format(&quot;yyyyMMddHHmm&quot;, TimeZone.getTimeZone(&quot;GMT+8&quot;))
+}
+</code></pre><p>添加到build.gradle文件中android{…} 方法体外</p>
+<p>打包方法：</p>
+<pre><code>applicationVariants.all { variant -&gt;
+    if (variant.buildType.name.equals(&apos;release&apos;)) {
+          variant.outputs.each { output -&gt;
+        def outputFile = output.outputFile
+            if (outputFile != null &amp;&amp; outputFile.name.endsWith(&apos;.apk&apos;)) {
+                  def fileName = &quot;MinicashboxSdk_${releaseTime()}.apk&quot;
+              output.outputFile = new File(outputFile.parent, fileName)
+            }
+          }
+    }
+  }
+</code></pre>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mac中如何卸载pkg包" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/02/mac中如何卸载pkg包/" class="article-date">
+  	<time datetime="2016-12-02T15:34:57.000Z" itemprop="datePublished">2016-12-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/02/mac中如何卸载pkg包/">mac中如何卸载pkg包</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、问题背景"><a href="#一、问题背景" class="headerlink" title="一、问题背景"></a>一、问题背景</h2><p>在mac中，安装程序有dmg和pkg两种形式。对于dmg，直接在应用程序中删除即可，但是pkg包却没有如此方便。需要通过命令行进行删除。</p>
+<p>Mac OS X 10.9.2</p>
+<h2 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h2><p>###1、打开“应用程序”-&gt;“实用工具(Utilities)”-&gt;“终端(Terminal)”。</p>
+<p>###2、使用”pkgutil –pkgs”命令，列出安装了的pkg包。</p>
+<p>com.apple.pkg.IncompatibleKextConfigData.3-15<br>com.apple.pkg.iPhoto_AppStore<br>com.apple.pkg.iTunesAccess<br>com.apple.pkg.iTunesX<br>com.apple.pkg.iTunesXPatch<br>com.apple.pkg.JavaEssentials<br>com.apple.pkg.JavaForMacOSX107<br>com.apple.pkg.JavaMDNS<br>com.apple.pkg.JavaSecurity<br>com.apple.pkg.JavaTools<br>com.apple.pkg.Keynote6<br>如图，我们安装了JavaForMacOSX107，假设我们想卸载，那么继续以下步骤。</p>
+<p>###3、使用”cd /private/var/db/receipts”，”ls”命令，列出所有的<em>.bom和</em>.plist文件。</p>
+<p>com.apple.pkg.JavaEssentials.bom<br>com.apple.pkg.JavaEssentials.plist<br>com.apple.pkg.JavaForMacOSX107.bom<br>com.apple.pkg.JavaForMacOSX107.plist<br>com.apple.pkg.JavaMDNS.bom<br>com.apple.pkg.JavaMDNS.plist<br>com.apple.pkg.JavaSecurity.bom<br>com.apple.pkg.JavaSecurity.plist<br>com.apple.pkg.JavaTools.bom<br>com.apple.pkg.JavaTools.plist<br>com.apple.pkg.Keynote6.bom<br>如图，com.apple.pkg.JavaForMacOSX107.bom记录了这个包所有的关联文件。</p>
+<p>###4、使用”lsbom com.apple.pkg.JavaForMacOSX107.bom”，查看所有关联文件。</p>
+<p>.    40755    0/0<br>./System    40755    0/0<br>./System/Library    40755    0/0<br>./System/Library/Java    40755    0/0<br>./System/Library/Java/JavaVirtualMachines    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes    40755    0/0<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-rt.jar100644    0/0    123448    2146194501<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/alt-string.jar    100644    0/0    42031    862452543<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar    100644    0/0    3515769    438110220<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.ja100644    0/0    31193251    1347176735<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/dt.jar    120755    0/0    18    3676296750    ../Home/lib/dt.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar    120755    0/0    19    925190531    ../Home/lib/jce.jar<br>./System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jconsole.jar    120755    0/0    24    3933942479    ../Home/lib/jconsole.jar<br>如图，此包的文件主要在/System/Library/Java/JavaVirtualMachines/1.6.0.jdk文件夹中，只要删除此文件夹即可。</p>
+<p>###5、进入/System/Library/Java/JavaVirtualMachines文件夹，执行”sudo rm -r 1.6.0.jdk”命令。</p>
+<p>###6、整个pkg删除完成。</p>
+<h2 id="三、注意"><a href="#三、注意" class="headerlink" title="三、注意"></a>三、注意</h2><p>第5步，sudo需要输入管理员密码，此密码必须要设置。<br>在“系统偏好设置”-&gt;“用户与群组”中设置管理员密码。</p>
+<p>也可使用开源的统一卸载方式</p>
+<p><a href="https://github.com/mpapis/pkg_uninstaller" target="_blank" rel="external">https://github.com/mpapis/pkg_uninstaller</a></p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-让Go2Shell支持iTerm2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/01/让Go2Shell支持iTerm2/" class="article-date">
+  	<time datetime="2016-12-01T11:20:41.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/01/让Go2Shell支持iTerm2/">让Go2Shell支持iTerm2</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="让Go2Shell支持iTerm2"><a href="#让Go2Shell支持iTerm2" class="headerlink" title="让Go2Shell支持iTerm2"></a>让Go2Shell支持iTerm2</h2><p>安装过后发现找不到Go2Shell的配置，Google后找到解决方案：在终端里敲如下命令即可：open -a Go2Shell –args config在打开的窗口中切换成iTerm2即可</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-解决Android-Studio报错：DefaultAndroidProject-Unsupported-major-minor-version-52-0" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -340,61 +601,6 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
 </code></pre><p><a href="http://yanue.net/post-163.html" target="_blank" rel="external">http://yanue.net/post-163.html</a></p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-预装-push-lib64中so文件查找错误" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/27/预装-push-lib64中so文件查找错误/" class="article-date">
-  	<time datetime="2016-08-26T16:39:08.000Z" itemprop="datePublished">2016-08-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/27/预装-push-lib64中so文件查找错误/">预装(push)lib64中so文件查找错误</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="">http://blog.csdn.net/caroline_wendy/article/details/43615361</a></p>
-<p>Process: com.iboxpay.cashbox.sdk.plug, PID: 6578<br>                                                                            java.lang.UnsatisfiedLinkError: dlopen failed: “/system/lib64/libemvandroid.so” is 32-bit instead of 64-bit<br>                                                                                at java.lang.Runtime.loadLibrary(Runtime.java:371)<br>                                                                                at java.lang.System.loadLibrary(System.java:988)<br>                                                                                at com.nexgo.libpboc.EmvL2.<clinit>(EmvL2.java:22)</clinit></p>
 
       
       
@@ -628,196 +834,6 @@ and the repository exists.
 
 
   
-    <article id="mac下sublime-Insight" class="article article-type-mac下sublime" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/30/Insight/" class="article-date">
-  	<time datetime="2016-06-30T10:05:25.000Z" itemprop="datePublished">2016-06-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/30/Insight/">Insight</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>环境换到了Mac，可是没有了Source Insight，查找了一下，解决思路如下：</p>
-<p>1、安装Sublime Text2，下面两步都是安装插件，很酷（我是新手）</p>
-<p>2、安装Package Controler</p>
-<p>3、安装CTags</p>
-<p>4、导入Android源码，使用CTgas建立索引，然后就很酷了，CMD+P查找.java文件  CMD+R查找方法</p>
-<p>噢了。</p>
-<p>安装Package Controler:<br>打开Sublime Text的Console,输入命令：</p>
-<pre><code>import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())
-</code></pre><p>回车完成命令输入。就会看到相应的下载运行。Package Controler命令安装，可参考官网：<a href="https://packagecontrol.io/installation#st2" target="_blank" rel="external">https://packagecontrol.io/installation#st2</a></p>
-<p>点击Preferences。如果安装成功了，Package Settings 、Package Control会出现在菜单里了。</p>
-<p>Mac OSX中配置CTags插件：<strong>安装配置ctags前请确保已安装Package Control插件管理器</strong><br>1、打开Sublime Text软件，在Preferences(设置)菜单中打开Package Control(插件管理器)<br>如图：</p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-关于hexo发表文章中插入图片" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/20/关于hexo发表文章中插入图片/" class="article-date">
-  	<time datetime="2016-03-20T00:13:24.000Z" itemprop="datePublished">2016-03-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/20/关于hexo发表文章中插入图片/">关于hexo发表文章中插入图片</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="发表嵌有图片的文章，图片path应该怎么写"><a href="#发表嵌有图片的文章，图片path应该怎么写" class="headerlink" title="发表嵌有图片的文章，图片path应该怎么写"></a>发表嵌有图片的文章，图片path应该怎么写</h2><p>###Hexo的文章资源文件夹<br>对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。_config.yml文件中设置属性：</p>
-<pre><code>post_asset_folder: true
-</code></pre><p>当资源文件管理功能打开后，Hexo将会在你每一次通过 “hexo new [layout] \<title>”命令创建新文章时自动创建一个文件夹。这个资源文件夹将会有与这个 markdown 文件一样的名字。将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。</title></p>
-<p><strong>为什么要这样做呢？</strong><br>因为采用Markdown的语法来发表嵌入图片的文章，会发现md文件里展示没问题，但是生成的网页是不成功的。<br>查了资料发现，要使用<a href="https://hexo.io/zh-cn/docs/tag-plugins.html" target="_blank" rel="external">标签插件</a>来实现“嵌入图片”。<br>图片标签为：</p>
-<figure class="highlight plain"><figcaption><span>[title] [] [url] [link text]</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;/path/to/image&quot; class=&quot;[class names]&quot; title=&quot;[width] [height] [title text [alt text]]&quot;&gt;</div></pre></td></tr></table></figure>
-<p>这样嵌入图片，返回发表，是不能正常显示的</p>
-<p><strong>个人例子：</strong><br>在根目录下的_config.xml文件中设置好属性post_asset_folder: true后，使用“hexo new [layout] \<title>”命令新建博客页，会发现在_post文件下会自动创建和新博客页同名的文件夹，图片资源文件就放在这这个文件夹中。然后使用</title></p>
-<pre><code>hexo generate -deploy
-</code></pre><p>就发表博客。<br>发表后会在“hexo”文件下与“source”文件夹同级的发表文件“public”文件夹下有对应发表文章的index.html主页。如我的文章index.html位置是：2016/03/19/iterm2半透明窗口/index.html，若采用markdown语法嵌入图片，应该是</p>
-<pre><code>{% img /2016/03/20/关于hexo发表文章中插入图片/hexo_generate.jpg hexo_generate %}
-</code></pre><p>，然而这样写在访问自己的服务器主页时，并不能正常显示图片，所以标签应该写成：</p>
-<pre><code>&lt;img src=&quot;/2016/03/19/iterm2半透明窗口/hotkey.jpg&quot; title=&quot;hotkey&quot;&gt;
-</code></pre><p>这样就ok了。</p>
-<p>当然，也有其他方法，比如在简书上发布文章，图片上传后会得到图片链接地址，把地址复制过来就可以了<br>采用写法 </p>
-<pre><code>![title.png/jpg] (url链接)
-</code></pre><p> 例如：</p>
-<pre><code>![git_construct.png](http://upload-images.jianshu.io/upload_images/1652297-337ffd0f995226ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-</code></pre><p>就正常显示了</p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-iterm2半透明窗口" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/20/iterm2半透明窗口/" class="article-date">
-  	<time datetime="2016-03-19T22:35:49.000Z" itemprop="datePublished">2016-03-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/20/iterm2半透明窗口/">iterm2半透明窗口</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##iterm2设置半透明效果，研究了许久，没想到此功能竟然是热键唤起时的效果</p>
-<p>如下图，设置好系统热线之后，将在正常的浏览器或者编辑器等窗口的上面，以半透明窗口形式直接调出iterm2 shell。<br><img src="/2016/03/19/iterm2半透明窗口/hotkey.jpg" title="hotkey"><br>按下同样的系统热键之后，将自动隐藏。这样非常有利于随时随地处理。</p>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -828,7 +844,7 @@ and the repository exists.
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2017 qingsong.xu
+        &copy; 2018 qingsong.xu
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
